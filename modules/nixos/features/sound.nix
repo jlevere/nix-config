@@ -1,11 +1,10 @@
 { pkgs, ... }:
 
 {
-  # Enable ALSA + PipeWire sound stack niceties
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  # Use PipeWire (configured elsewhere) and disable legacy PulseAudio
+  services.pulseaudio.enable = false;
 
-  # Make sure UCM2 profiles are available for ALSA
+  # Ensure ALSA UCM profiles are available for mixer control
   environment.systemPackages = [ pkgs.alsa-ucm-conf ];
 }
 

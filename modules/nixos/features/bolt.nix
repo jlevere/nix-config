@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  services.bolt.enable = true;
+  services.hardware.bolt.enable = true;
 }
 
 

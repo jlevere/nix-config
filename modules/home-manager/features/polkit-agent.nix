@@ -9,7 +9,7 @@
     Service = {
       # Only start when running a Hyprland session
       ExecCondition = "${pkgs.bash}/bin/bash -c 'test -n \"$HYPRLAND_INSTANCE_SIGNATURE\"'";
-      ExecStart = "${pkgs.hyprpolkitagent}/bin/hyprpolkitagent";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       Restart = "on-failure";
     };
     Install = {

@@ -1,9 +1,13 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  # Use packaged hyprland from nixpkgs for stability
+  programs.hyprland.package = pkgs.hyprland;
   programs.hyprland.xwayland.enable = true;
+
+  # Prefer logind backend for libseat to avoid seatd requirements
+  environment.variables.LIBSEAT_BACKEND = "logind";
 
   # Allow hyprlock PAM module for session locking
   security.pam.services.hyprlock = { };

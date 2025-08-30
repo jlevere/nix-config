@@ -56,5 +56,9 @@ in
     slurp
     swappy
     firefox
+    code-cursor
   ];
+
+  # Allow unfree packages for Home Manager as well
+  nixpkgs.config.allowUnfree = true;
 }

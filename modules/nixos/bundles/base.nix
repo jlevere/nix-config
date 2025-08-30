@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   mySystem = {
@@ -14,6 +14,8 @@
 
   time.timeZone = lib.mkDefault "America/Chicago";
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
+
+  environment.systemPackages = [ pkgs.home-manager ];
 
   # Network time and weekly SSD trim for stability
   services.timesyncd.enable = lib.mkDefault true;

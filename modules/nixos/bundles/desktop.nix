@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   mySystem = {
@@ -12,7 +12,20 @@
     bolt.enable = lib.mkDefault true;
     sound.enable = lib.mkDefault true;
     rtkit.enable = lib.mkDefault true;
+    keyboard.enable = lib.mkDefault true;
   };
+
+  # Support color management and location portals used by GNOME/Mutter and apps
+  services.colord.enable = lib.mkDefault true;
+  services.geoclue2.enable = lib.mkDefault true;
+
+  # Backlight via DDC/CI for external monitors on Wayland systems
+  hardware.i2c.enable = lib.mkDefault true;
+  services.udev.packages = [ pkgs.ddcutil ];
+  environment.systemPackages = [ pkgs.ddcutil ];
+
+  # Docker setup and user access per https://wiki.nixos.org/wiki/Docker
+  virtualisation.docker.enable = lib.mkDefault true;
 }
 
 

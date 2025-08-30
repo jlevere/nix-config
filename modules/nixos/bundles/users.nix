@@ -50,6 +50,9 @@
       ) (config.mySystem.users);
     };
 
+    users.groups.docker = { members = builtins.attrNames config.mySystem.users; };
+    users.groups.i2c = { members = builtins.attrNames config.mySystem.users; };
+
     users.users = builtins.mapAttrs (
       name: user:
       {
@@ -57,10 +60,14 @@
         initialPassword = "password";
         description = name;
         shell = pkgs.fish;
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-        ];
+        extraGroups =
+          [
+            "networkmanager"
+            "wheel"
+            "docker"
+            "i2c"
+          ]
+          ++ (user.userSettings.extraGroups or [ ]);
       }
       // user.userSettings
     ) (config.mySystem.users);
