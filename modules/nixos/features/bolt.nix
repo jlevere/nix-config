@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  services.bolt.enable = true;
+}
+
+
