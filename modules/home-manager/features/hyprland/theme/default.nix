@@ -42,6 +42,14 @@
       };
     };
 
+    # Ensure pointer cursor theme is set for Wayland and X11 apps
+    home.pointerCursor = {
+      name = "catppuccin-mocha-teal-cursors";
+      package = pkgs.catppuccin-cursors.mochaTeal;
+      size = 24;
+      gtk.enable = true;
+    };
+
     xdg.configFile = {
       "hypr/hyprpaper.conf".text = ''
         preload = ~/.wallpapers/wallpaper.png

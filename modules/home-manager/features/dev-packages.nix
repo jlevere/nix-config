@@ -7,6 +7,7 @@
     act
     alejandra
     awscli2
+    code-cursor
     bat
     binutils
     dig

@@ -28,14 +28,19 @@
     };
   };
 
-  home.activation.configure-tide = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    ${pkgs.fish}/bin/fish -c "tide configure --auto --style=Lean \
-     --prompt_colors='True color' --show_time=No \
-      --lean_prompt_height='Two lines' \
-      --prompt_connection=Disconnected \
-      --prompt_connection_andor_frame_color=Dark \
-      --prompt_spacing=Compact --icons='Many icons' \
-      --transient=No"
+  home.activation.configure-tide = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    ${pkgs.fish}/bin/fish -c '
+      if functions -q tide
+        tide configure --auto --style=Lean \
+          --prompt_colors="True color" --show_time=No \
+          --lean_prompt_height="Two lines" \
+          --prompt_connection=Disconnected \
+          --prompt_connection_andor_frame_color=Dark \
+          --prompt_spacing=Compact --icons="Many icons" \
+          --transient=No
+      else
+        echo "tide not installed, skipping configure"
+      end'
   '';
 }
 

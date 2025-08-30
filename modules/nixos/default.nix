@@ -41,5 +41,10 @@ in
     ];
     nixpkgs.config.allowUnfree = true;
     programs.nix-ld.enable = true;
+
+    # Allow unfree packages for interactive nix shell usage
+    environment.sessionVariables = {
+      NIXPKGS_ALLOW_UNFREE = "1";
+    };
   };
 }

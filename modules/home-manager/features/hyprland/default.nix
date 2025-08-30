@@ -34,6 +34,19 @@
           "col.active_border" = "rgba(94e2d5ee) rgba(94e2d5ee) 45deg";
         };
 
+        debug = {
+          disable_logs = false;
+        };
+
+        input = {
+          kb_layout = "us";
+          kb_options = "caps:ctrl_modifier";
+        };
+
+        cursor = {
+          no_hardware_cursors = true;
+        };
+
         exec-once = [ ];
 
         monitor = [
@@ -51,6 +64,12 @@
         env = [
           "NIXOS_OZONE_WL,1"
           "MOZ_ENABLE_WAYLAND,1"
+          "LIBVA_DRIVER_NAME,nvidia"
+          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+          "ELECTRON_OZONE_PLATFORM_HINT,auto"
+          "NVD_BACKEND,direct"
+          "XCURSOR_THEME,catppuccin-mocha-teal-cursors"
+          "XCURSOR_SIZE,24"
         ];
       };
     };
