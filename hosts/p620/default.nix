@@ -18,13 +18,15 @@
 
   mySystem = {
     bundles = {
-      system.enable = true;
+      base.enable = true;
+      desktop.enable = true;
       users.enable = true;
       gpu-nvidia-ampere.enable = true;
     };
 
+    # Explicitly choose GDM as the display manager
     gdm.enable = true;
-    hyprland.enable = true;
+    # Keep GNOME optional via mySystem.gnome.enable if desired
 
     users = {
       "admin" = import ../../users/admin;

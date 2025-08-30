@@ -48,4 +48,13 @@ let
 in
 {
   imports = features ++ bundles;
+
+  # Common desktop tools for both GNOME and Hyprland sessions
+  home.packages = with pkgs; [
+    wl-clipboard
+    grim
+    slurp
+    swappy
+    firefox
+  ];
 }

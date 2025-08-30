@@ -15,12 +15,9 @@
       hypridle
       hyprcursor
       hyprpaper
-
-      wl-clipboard
       pavucontrol
       rofi-wayland
       playerctl
-      firefox
     ];
 
     wayland.windowManager.hyprland = {

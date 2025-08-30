@@ -8,7 +8,7 @@
 {
   xdg.portal = {
     enable = true;
-    # Hyprland module typically wires in the hyprland portal; keep only GTK
+    # Provide only GTK portal; let upstream Hyprland module add its own
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 }

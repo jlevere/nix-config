@@ -1,12 +1,13 @@
-{ ... }:
+{ lib, ... }:
 
 {
   services = {
     xserver.enable = true;
     displayManager.gdm = {
       enable = true;
-      wayland = true; # GNOME Wayland session; Hyprland provided separately
+      wayland = lib.mkDefault true;
     };
-    desktopManager.gnome.enable = true;
+    # Default to not enabling full GNOME; provide separate feature
+    desktopManager.gnome.enable = lib.mkDefault false;
   };
 }

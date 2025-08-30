@@ -2,7 +2,6 @@
   lib,
   config,
   inputs,
-  outputs,
   myUtils,
   pkgs,
   ...
@@ -35,7 +34,6 @@
       extraSpecialArgs = {
         inherit inputs;
         inherit myUtils;
-        outputs = inputs.self.outputs;
       };
 
       users = builtins.mapAttrs (
@@ -44,7 +42,9 @@
         {
           imports = [
             (import user.userConfig)
-            outputs.homeManagerModules.default
+            # home-manager module set is already imported at nixos level;
+            # import only project HM module tree
+            ../../home-manager
           ];
         }
       ) (config.mySystem.users);
@@ -55,7 +55,7 @@
       {
         isNormalUser = true;
         initialPassword = "password";
-        description = "";
+        description = name;
         shell = pkgs.fish;
         extraGroups = [
           "networkmanager"
