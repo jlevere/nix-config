@@ -50,7 +50,7 @@
           "$mainMod, G, togglegroup"
           "$mainMod, bracketleft, changegroupactive, b"
           "$mainMod, bracketright, changegroupactive, f"
-          "$mainMod, SPACE, exec, rofi -show drun" # TODO: make this modular
+          "$mainMod, SPACE, exec, rofi -show drun"
           "$mainMod, P, pin, active"
 
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"

@@ -10,7 +10,7 @@
       default = {
         "$mainMod, A" = {
           "f"."f" = {
-            exec = "brave";
+            exec = "firefox";
           };
         };
       };
@@ -23,7 +23,7 @@
     in
     {
       myUser.keybinds = {
-        "SUPER SHIFT, RETURN".package = pkgs.brave;
+        "SUPER SHIFT, RETURN".package = pkgs.firefox;
 
         "SUPER, p".script = ''
           ${getExe pkgs.playerctl} play-pause

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   imports = [
@@ -23,11 +23,7 @@
     catppuccin = {
       enable = true;
       flavor = "mocha";
-      cursors = {
-        enable = true;
-        flavor = "mocha";
-        accent = "teal";
-      };
+      cursors.enable = false; # dont build tons of cursor variants
     };
 
     gtk = {
@@ -51,8 +47,8 @@
         preload = ~/.wallpapers/wallpaper.png
         wallpaper = , ~/.wallpapers/wallpaper.png
       '';
-      "rofi/catppuccin-mocha.rasi".source = ./rofi/catppuccin-mocha.rasi;
-      "rofi/config.rasi".source = ./rofi/config.rasi;
+      "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi-wayland) { source = ./rofi/catppuccin-mocha.rasi; };
+      "rofi/config.rasi" = lib.mkIf (pkgs ? rofi-wayland) { source = ./rofi/config.rasi; };
     };
   };
 }

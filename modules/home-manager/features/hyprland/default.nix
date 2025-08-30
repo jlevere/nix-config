@@ -18,6 +18,9 @@
 
       wl-clipboard
       pavucontrol
+      rofi-wayland
+      playerctl
+      firefox
     ];
 
     wayland.windowManager.hyprland = {
@@ -31,10 +34,7 @@
           "col.active_border" = "rgba(94e2d5ee) rgba(94e2d5ee) 45deg";
         };
 
-        exec-once = [
-          "hyprpaper"
-          "waybar"
-        ];
+        exec-once = [ ];
 
         monitor = [
           ", preferred, auto, 1"
@@ -53,6 +53,20 @@
           "MOZ_ENABLE_WAYLAND,1"
         ];
       };
+    };
+
+    systemd.user.services.hyprpaper = {
+      Unit = {
+        Description = "Hyprpaper Wallpaper Daemon";
+        After = [ "graphical-session.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+      Service = {
+        ExecCondition = ''${pkgs.bash}/bin/bash -lc 'test -n "$HYPRLAND_INSTANCE_SIGNATURE"' '';
+        ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
+        Restart = "on-failure";
+      };
+      Install = { WantedBy = [ "graphical-session.target" ]; };
     };
   };
 }
