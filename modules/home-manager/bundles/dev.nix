@@ -6,5 +6,3 @@
     zellij.enable = lib.mkDefault true;
   };
 }
-
-

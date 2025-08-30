@@ -65,6 +65,7 @@ in
         "networkmanager"
         "wheel"
       ];
-    } // cfg.userNixosSettings;
+    }
+    // cfg.userNixosSettings;
   };
 }

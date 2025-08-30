@@ -27,12 +27,11 @@ let
   }) (utils.filesIn ./bundles) { inherit pkgs; };
 in
 {
-  imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-    ]
-    ++ features
-    ++ bundles;
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ]
+  ++ features
+  ++ bundles;
 
   config = {
     nix.settings.experimental-features = [

@@ -6,4 +6,3 @@ _:
     options = [ "caps:ctrl_modifier" ];
   };
 }
-

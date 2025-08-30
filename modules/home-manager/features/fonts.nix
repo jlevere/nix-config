@@ -17,5 +17,3 @@
     serif = [ "Noto Serif" ];
   };
 }
-
-

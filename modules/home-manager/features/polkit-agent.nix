@@ -12,6 +12,8 @@
       ExecStart = "${pkgs.hyprpolkitagent}/bin/hyprpolkitagent";
       Restart = "on-failure";
     };
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
   };
 }

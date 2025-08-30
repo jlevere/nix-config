@@ -3,8 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     inetutils
-    tcpdump 
+    tcpdump
   ];
 }
-
-

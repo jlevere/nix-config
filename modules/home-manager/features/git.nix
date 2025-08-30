@@ -42,7 +42,10 @@ in
   config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
-      ignores = [ ".direnv" ".envrc" ];
+      ignores = [
+        ".direnv"
+        ".envrc"
+      ];
       extraConfig = {
         commit.gpgsign = true;
         gpg.format = "ssh";
@@ -70,15 +73,22 @@ in
 
     # Write allowed_signers only when url+sha256 provided
     home.file = lib.mkIf (cfg.allowedSigners.url != null && cfg.allowedSigners.sha256 != null) {
-      "${cfg.allowedSigners.filePath}".text = let
-        raw = builtins.readFile (builtins.fetchurl {
-          url = cfg.allowedSigners.url;
-          sha256 = cfg.allowedSigners.sha256;
-        });
-        lines = lib.filter (l: l != "") (lib.splitString "\n" raw);
-        label = if cfg.allowedSigners.email != null then cfg.allowedSigners.email else (config.programs.git.userEmail or "git@localhost");
-      in (lib.concatMapStringsSep "\n" (k: "${label} ${k}") lines) + "\n";
+      "${cfg.allowedSigners.filePath}".text =
+        let
+          raw = builtins.readFile (
+            builtins.fetchurl {
+              url = cfg.allowedSigners.url;
+              sha256 = cfg.allowedSigners.sha256;
+            }
+          );
+          lines = lib.filter (l: l != "") (lib.splitString "\n" raw);
+          label =
+            if cfg.allowedSigners.email != null then
+              cfg.allowedSigners.email
+            else
+              (config.programs.git.userEmail or "git@localhost");
+        in
+        (lib.concatMapStringsSep "\n" (k: "${label} ${k}") lines) + "\n";
     };
   };
 }
-

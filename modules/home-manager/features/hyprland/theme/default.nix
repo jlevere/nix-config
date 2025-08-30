@@ -1,4 +1,9 @@
-{ pkgs, inputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -55,7 +60,9 @@
         preload = ~/.wallpapers/wallpaper.png
         wallpaper = , ~/.wallpapers/wallpaper.png
       '';
-      "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi-wayland) { source = ./rofi/catppuccin-mocha.rasi; };
+      "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi-wayland) {
+        source = ./rofi/catppuccin-mocha.rasi;
+      };
       "rofi/config.rasi" = lib.mkIf (pkgs ? rofi-wayland) { source = ./rofi/config.rasi; };
     };
   };

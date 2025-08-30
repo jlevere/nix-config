@@ -3,5 +3,3 @@
 {
   home.packages = [ pkgs.vesktop ];
 }
-
-

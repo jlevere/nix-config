@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
 
@@ -40,5 +45,3 @@
   # Often helps Wayland session stability on NVIDIA
   boot.kernelParams = [ "nvidia-drm.modeset=1" ];
 }
-
-

@@ -6,5 +6,3 @@
     cudaPackages.cudnn
   ];
 }
-
-

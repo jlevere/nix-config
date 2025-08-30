@@ -85,7 +85,9 @@
         ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
         Restart = "on-failure";
       };
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
     };
   };
 }

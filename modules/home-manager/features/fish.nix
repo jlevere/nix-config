@@ -24,11 +24,13 @@
       }
     ];
     functions = {
-      fish_greeting = { body = ""; };
+      fish_greeting = {
+        body = "";
+      };
     };
   };
 
-  home.activation.configure-tide = lib.hm.dag.entryAfter ["linkGeneration"] ''
+  home.activation.configure-tide = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     ${pkgs.fish}/bin/fish -c '
       if functions -q tide
         tide configure --auto --style=Lean \
@@ -43,5 +45,3 @@
       end'
   '';
 }
-
-

@@ -3,5 +3,3 @@
 {
   programs.dconf.enable = true;
 }
-
-

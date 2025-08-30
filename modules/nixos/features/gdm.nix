@@ -10,5 +10,3 @@
     desktopManager.gnome.enable = true;
   };
 }
-
-
