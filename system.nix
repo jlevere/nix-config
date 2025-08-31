@@ -1,11 +1,11 @@
-{ pkgs, inputs, myUtils, ... }:
+{ pkgs, inputs, myUtils, lib, ... }:
 
 {
 
 	imports = [
 		# Include the results of the hardware scan.
 		./hardware-configuration.nix
-		../../modules/nixos
+		./modules/nixos
 	];
 
 	boot = {
@@ -13,16 +13,24 @@
 
 		kernelParams = [ "quiet" ];
 		kernelModules = [
-			"coretemp"
 			"cpuid"
 		];
 	};
 
-	# Home Manager users
+	# Replace missing disk swap with zram swap to avoid boot timeout
+	zramSwap = {
+		enable = true;
+		memoryPercent = 50;
+	};
+
+	# Force-disable old swapDevices defined by hardware-configuration.nix (UUID no longer exists)
+	swapDevices = lib.mkForce [];
+
+	# Home Manager users (co-located with system root)
 	home-manager.users.admin = { ... }: {
 		imports = [
-			(import ../../users/admin/home.nix)
-			../../modules/home-manager
+			./home.nix
+			./modules/home-manager
 		];
 	};
 
@@ -49,3 +57,5 @@
 
 	system.stateVersion = "25.05";
 }
+
+

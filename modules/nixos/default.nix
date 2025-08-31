@@ -20,7 +20,6 @@
     ./hyprland.nix
     ./keyboard.nix
     ./lmsensors.nix
-    ./ly.nix
     ./openssh.nix
     ./pipewire.nix
     ./polkit.nix

@@ -5,14 +5,12 @@
 }:
 
 {
-
   programs.git = {
     userName = "jLevere";
     userEmail = "71566629+jLevere@users.noreply.github.com";
   };
 
   myUser = {
-    # Explicit feature toggles (bundles removed)
     fonts.enable = true;
     git.enable = true;
     fish.enable = true;
@@ -42,3 +40,5 @@
     stateVersion = "25.05";
   };
 }
+
+

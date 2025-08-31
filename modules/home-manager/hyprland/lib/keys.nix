@@ -14,62 +14,40 @@
         let
           toWSNumber = n: (toString (if n == 0 then 10 else n));
 
-          moveworkspaces = map (n: "$mainMod SHIFT, ${toString n}, movetoworkspace, ${toWSNumber n}") [
-            1
-            2
-            3
-            4
-            5
-            6
-            7
-            8
-            9
-            0
-          ];
-
-          woworkspaces = map (n: "$mainMod, ${toString n}, workspace, ${toWSNumber n}") [
-            1
-            2
-            3
-            4
-            5
-            6
-            7
-            8
-            9
-            0
-          ];
+          moveworkspaces = map (n: "$mainMod SHIFT, ${toString n}, movetoworkspace, ${toWSNumber n}") [ 1 2 3 4 5 6 7 8 9 0 ];
+          woworkspaces  = map (n: "$mainMod, ${toString n}, workspace, ${toWSNumber n}")          [ 1 2 3 4 5 6 7 8 9 0 ];
         in
         [
+          # Launch terminal and app launcher
           "$mainMod, return, exec, wezterm"
-          "$mainMod, Q, killactive"
-          "$mainMod SHIFT, M, exit"
-          "$mainMod SHIFT, F, togglefloating"
-          "$mainMod, F, fullscreen"
-          "$mainMod, T, pin"
-          "$mainMod, G, togglegroup"
-          "$mainMod, bracketleft, changegroupactive, b"
-          "$mainMod, bracketright, changegroupactive, f"
           "$mainMod, SPACE, exec, rofi -show drun"
-          "$mainMod, P, pin, active"
 
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
+          # Window management
+          "$mainMod, Q, killactive"
+          "$mainMod, F, fullscreen"
+          "$mainMod SHIFT, F, togglefloating"
+          "$mainMod, P, pseudo"
+          "$mainMod, S, layoutmsg, togglesplit"
 
+          # Workspace navigation
+          "$mainMod, bracketleft, workspace, -1"
+          "$mainMod, bracketright, workspace, +1"
+
+          # Directional focus (vim-style) and arrows
+          "SUPER, H, movefocus, l"
+          "SUPER, J, movefocus, d"
+          "SUPER, K, movefocus, u"
+          "SUPER, L, movefocus, r"
           "$mainMod, left, movefocus, l"
           "$mainMod, right, movefocus, r"
           "$mainMod, up, movefocus, u"
           "$mainMod, down, movefocus, d"
 
-          "$mainMod, h, movefocus, l"
-          "$mainMod, l, movefocus, r"
-          "$mainMod, k, movefocus, u"
-          "$mainMod, j, movefocus, d"
-
-          "$mainMod SHIFT, h, movewindow, l"
-          "$mainMod SHIFT, l, movewindow, r"
-          "$mainMod SHIFT, k, movewindow, u"
-          "$mainMod SHIFT, j, movewindow, d"
+          # Audio controls
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioPlay, exec, playerctl play-pause"
         ]
         ++ woworkspaces
         ++ moveworkspaces;
@@ -93,43 +71,6 @@
       ];
     };
 
-    extraConfig =
-      let
-        wrapWriteApplication =
-          text:
-          lib.getExe (
-            pkgs.writeShellApplication {
-              name = "script";
-              inherit text;
-            }
-          );
-
-        makeHyprBinds =
-          parentKeyName: keyName: keyOptions:
-          let
-            newKeyName = if builtins.match ".*,.*" keyName != null then keyName else "," + keyName;
-            submapname =
-              parentKeyName + (builtins.replaceStrings [ " " "," "$" ] [ "hypr" "submaps" "suck" ] newKeyName); # joke stolen from vimjoyer
-          in
-          if builtins.hasAttr "script" keyOptions then
-            ''
-              bind = ${newKeyName}, exec, ${wrapWriteApplication keyOptions.script} 
-              bind = ${newKeyName},submap,reset
-            ''
-          else if builtins.hasAttr "package" keyOptions then
-            ''
-              bind = ${newKeyName}, exec, ${lib.getExe keyOptions.package}
-              bind = ${newKeyName},submap,reset
-            ''
-          else
-            ''
-              bind = ${newKeyName}, submap, ${submapname}
-
-              submap = ${submapname}
-              ${lib.concatLines (lib.mapAttrsToList (makeHyprBinds submapname) keyOptions)}
-              submap = reset
-            '';
-      in
-      lib.mkAfter (lib.concatLines (lib.mapAttrsToList (makeHyprBinds "root") config.myUser.keybinds));
+    extraConfig = "";
   };
 }

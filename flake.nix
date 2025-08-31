@@ -26,11 +26,7 @@
     with utils;
     {
       nixosConfigurations = {
-        p620 = mkSystem ./hosts/p620;
-      };
-
-      homeConfigurations = {
-        "admin@p620" = mkHome "x86_64-linux" ./users/admin/home.nix "wayland";
+        p620 = mkSystem ./system.nix;
       };
 
       homeManagerModules.default = ./modules/home-manager;

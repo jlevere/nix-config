@@ -26,6 +26,8 @@
       portalPackage = null;
       systemd.variables = [ "--all" ];
 
+      plugins = [];
+
       settings = {
         general = {
           gaps_in = 5;
