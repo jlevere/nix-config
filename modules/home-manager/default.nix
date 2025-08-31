@@ -19,25 +19,7 @@ let
 
         configExtension = config: (lib.mkIf cfg.${name}.enable config);
       })
-      (myUtils.filesIn ./features)
-      {
-        inherit
-          pkgs
-          inputs
-          displayServer
-          ;
-      };
-
-  bundles =
-    myUtils.extendModules
-      (name: {
-        extraOptions = {
-          myUser.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
-        };
-
-        configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
-      })
-      (myUtils.filesIn ./bundles)
+      (builtins.filter (p: myUtils.fileNameOf p != "default") (myUtils.filesIn ./.))
       {
         inherit
           pkgs
@@ -47,7 +29,7 @@ let
       };
 in
 {
-  imports = features ++ bundles;
+  imports = features;
 
   # Common desktop tools for both GNOME and Hyprland sessions
   home.packages = with pkgs; [

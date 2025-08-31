@@ -1,49 +1,47 @@
-{
-  pkgs,
-  config,
-  lib,
-  inputs,
-  myUtils,
-  ...
-}:
-let
-  cfg = config.mySystem;
-  utils = myUtils;
+{ inputs, myUtils, ... }:
 
-  features = utils.extendModules (name: {
-    extraOptions = {
-      mySystem.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
-    };
-
-    configExtension = config: (lib.mkIf cfg.${name}.enable config);
-  }) (utils.filesIn ./features) { inherit pkgs; };
-
-  bundles = utils.extendModules (name: {
-    extraOptions = {
-      mySystem.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
-    };
-
-    configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
-  }) (utils.filesIn ./bundles) { inherit pkgs; };
-in
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-  ]
-  ++ features
-  ++ bundles;
 
-  config = {
-    nix.settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    nixpkgs.config.allowUnfree = true;
-    programs.nix-ld.enable = true;
+    # NixOS module set
+    ./autologin.nix
+    ./backlight.nix
+    ./bluetooth.nix
+    ./bolt.nix
+    ./bootloader.nix
+    ./cuda.nix
+    ./dconf.nix
+    ./dev-nettools.nix
+    ./firmware.nix
+    ./fish.nix
+    ./fonts.nix
+    ./gpu-nvidia-ampere.nix
+    ./hyprland.nix
+    ./keyboard.nix
+    ./lmsensors.nix
+    ./ly.nix
+    ./openssh.nix
+    ./pipewire.nix
+    ./polkit.nix
+    ./qt-wayland.nix
+    ./upower.nix
+    ./usb.nix
+    ./xdg-utils.nix
+  ];
 
-    # Allow unfree packages for interactive nix shell usage
-    environment.sessionVariables = {
-      NIXPKGS_ALLOW_UNFREE = "1";
-    };
+  # Home Manager globals
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "bkp";
+    extraSpecialArgs = { inherit inputs myUtils; };
   };
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+  programs.nix-ld.enable = true;
+
+  # Allow unfree packages for interactive nix shell usage
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 }

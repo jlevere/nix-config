@@ -12,11 +12,23 @@
   };
 
   myUser = {
-    bundles = {
-      general.enable = true;
-      desktop.enable = true;
+    # Explicit feature toggles (bundles removed)
+    fonts.enable = true;
+    git.enable = true;
+    fish.enable = true;
+    direnv.enable = true;
+    nix-registry.enable = true;
+    man.enable = true;
+    keyboard.enable = true;
 
-    };
+    hyprland.enable = true;
+    vesktop.enable = true;
+    typst.enable = true;
+    notifications.enable = true;
+    polkit-agent.enable = true;
+    wezterm.enable = true;
+    dev-packages.enable = true;
+    zellij.enable = true;
 
     git.allowedSigners = {
       url = "https://github.com/jLevere.keys";

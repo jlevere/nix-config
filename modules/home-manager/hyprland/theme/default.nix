@@ -17,7 +17,7 @@
     ];
 
     home.file.".wallpapers/wallpaper.png".source =
-      ../../../../../assets/wallpapers/nixos-wallpaper-catppuccin-mocha.png;
+      inputs.self + "/assets/wallpapers/nixos-wallpaper-catppuccin-mocha.png";
 
     qt = {
       enable = true;

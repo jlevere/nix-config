@@ -1,44 +1,51 @@
-{ pkgs, ... }:
+{ pkgs, inputs, myUtils, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
 
-  boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+	imports = [
+		# Include the results of the hardware scan.
+		./hardware-configuration.nix
+		../../modules/nixos
+	];
 
-    kernelParams = [ "quiet" ];
-    kernelModules = [
-      "coretemp"
-      "cpuid"
-    ];
-  };
+	boot = {
+		kernelPackages = pkgs.linuxPackages_zen;
 
-  mySystem = {
-    bundles = {
-      base.enable = true;
-      desktop.enable = true;
-      users.enable = true;
-      gpu-nvidia-ampere.enable = true;
-    };
+		kernelParams = [ "quiet" ];
+		kernelModules = [
+			"coretemp"
+			"cpuid"
+		];
+	};
 
-    # Using Ly display manager -> Hyprland session
+	# Home Manager users
+	home-manager.users.admin = { ... }: {
+		imports = [
+			(import ../../users/admin/home.nix)
+			../../modules/home-manager
+		];
+	};
 
-    users = {
-      "admin" = import ../../users/admin;
-    };
-    dev-nettools.enable = true;
-  };
+	# System users (simple inline style)
+	users.users.admin = {
+		isNormalUser = true;
+		initialPassword = "password";
+		description = "admin";
+		shell = pkgs.fish;
+		extraGroups = [ "networkmanager" "wheel" "docker" "i2c" ];
+	};
 
-  networking.hostName = "p620";
-  networking.networkmanager.enable = true;
+	users.groups.docker.members = [ "admin" ];
+	users.groups.i2c.members = [ "admin" ];
 
-  services = {
-    libinput.enable = true;
-    printing.enable = true;
-  };
+	networking.hostName = "p620";
+	networking.networkmanager.enable = true;
 
-  system.stateVersion = "25.05";
+	services = {
+		libinput.enable = true;
+		printing.enable = true;
+		openssh.enable = false;
+	};
+
+	system.stateVersion = "25.05";
 }
