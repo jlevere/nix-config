@@ -5,15 +5,14 @@
     ./keymap.nix
     ./waybar
     ./theme
+    ./hypridle.nix
+    ./hyprlock.nix
   ];
 
   config = {
     home.packages = with pkgs; [
-      pyprland
-      hyprpicker
       hyprlock
       hypridle
-      hyprcursor
       hyprpaper
       pavucontrol
       rofi-wayland
