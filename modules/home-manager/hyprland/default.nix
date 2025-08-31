@@ -40,7 +40,6 @@
 
         input = {
           kb_layout = "us";
-          kb_options = "caps:ctrl_modifier";
         };
 
         cursor = {
@@ -57,9 +56,6 @@
           rounding = 8;
         };
 
-        gestures = {
-          workspace_swipe = true;
-        };
 
         env = [
           "NIXOS_OZONE_WL,1"

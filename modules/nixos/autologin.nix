@@ -13,10 +13,5 @@ in
   };
 
   config = lib.mkIf (cfg.user != null) {
-    programs.bash.shellInit = ''
-      if [ "$(tty)" = "/dev/tty1" ]; then
-        exec Hyprland &> /dev/null
-      fi
-    '';
   };
 }
