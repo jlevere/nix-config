@@ -13,7 +13,7 @@
     };
     Service = {
       ExecCondition = ''${pkgs.bash}/bin/bash -lc 'test -n "$HYPRLAND_INSTANCE_SIGNATURE"' '';
-      ExecStart = "${pkgs.hyprpolkitagent}/bin/hyprpolkitagent";
+      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
       Restart = "on-failure";
     };
     Install = {
