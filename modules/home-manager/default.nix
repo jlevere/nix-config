@@ -57,6 +57,8 @@ in
     swappy
     firefox
     code-cursor
+    nixfmt-rfc-style
+    nil
   ];
 
   # Allow unfree packages for Home Manager as well

@@ -35,5 +35,7 @@
 
       homeManagerModules.default = ./modules/home-manager;
       nixosModules.default = ./modules/nixos;
+
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
     };
 }

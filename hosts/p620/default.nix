@@ -25,8 +25,6 @@
     };
 
     # Explicitly choose GDM as the display manager
-    gdm.enable = true;
-    # Keep GNOME optional via mySystem.gnome.enable if desired
 
     users = {
       "admin" = import ../../users/admin;
