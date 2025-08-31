@@ -24,7 +24,7 @@
       gpu-nvidia-ampere.enable = true;
     };
 
-    # Explicitly choose GDM as the display manager
+    # Using Ly display manager -> Hyprland session
 
     users = {
       "admin" = import ../../users/admin;

@@ -60,7 +60,4 @@ in
     nixfmt-rfc-style
     nil
   ];
-
-  # Allow unfree packages for Home Manager as well
-  nixpkgs.config.allowUnfree = true;
 }
