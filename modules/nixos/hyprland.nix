@@ -8,7 +8,11 @@
 
   services = {
     displayManager.defaultSession = "hyprland";
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "breeze";
+    };
   };
 
   services.xserver.enable = true;
