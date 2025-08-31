@@ -50,6 +50,14 @@
       color: @peach;
     }
 
+    #workspaces button.special {
+      color: @mauve;
+    }
+
+    #workspaces button.urgent {
+      color: @yellow;
+    }
+
     #submap {
       background-color: alpha(@surface1, 0.7);
       border-radius: 15;
@@ -70,6 +78,16 @@
       padding-right: 20;
       margin-top: 5;
       margin-bottom: 5;
+    }
+
+    #window {
+      color: @text;
+      padding-left: 10;
+      padding-right: 10;
+    }
+
+    #window.empty {
+      color: @overlay0;
     }
 
     #custom-separator {
@@ -94,6 +112,12 @@
 
     #clock.calendar {
       color: @mauve;
+    }
+
+    #language {
+      color: @sapphire;
+      padding-left: 10;
+      padding-right: 10;
     }
   '';
 }

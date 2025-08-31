@@ -9,6 +9,7 @@ _:
       spacing = 4;
       "modules-left" = [
         "hyprland/workspaces"
+        "hyprland/window"
         "hyprland/submap"
       ];
       "modules-center" = [
@@ -28,6 +29,9 @@ _:
 
       "hyprland/workspaces" = {
         "on-click" = "activate";
+        "on-scroll-up" = "hyprctl dispatch workspace e+1";
+        "on-scroll-down" = "hyprctl dispatch workspace e-1";
+        "on-click-right" = "hyprctl dispatch togglespecialworkspace";
         format = "{icon}";
         "format-icons" = {
           "1" = "󰲠";
@@ -60,6 +64,17 @@ _:
         };
       };
 
+      "hyprland/window" = {
+        format = "{title}";
+        "max-length" = 40;
+        "separate-outputs" = true;
+        rewrite = {
+          ".* - Mozilla Firefox" = "  {title}";
+          ".* - Code" = "  {title}";
+        };
+        "tooltip" = true;
+      };
+
       "tray" = {
         icon-size = 16;
         spacing = 8;
@@ -74,10 +89,16 @@ _:
       };
 
       "pulseaudio" = {
-        format = "  {volume}%";
-        format-muted = "  {volume}%";
+        format = "{icon}";
+        format-muted = "";
+        "format-icons" = [ "" "" "" ];
         on-click = "pavucontrol";
         tooltip = true;
+      };
+
+      "hyprland/language" = {
+        format = "  {short}";
+        tooltip = false;
       };
 
       "hyprland/submap" = {

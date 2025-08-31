@@ -29,7 +29,6 @@
       enable = true;
       flavor = "mocha";
       cursors.enable = false; # dont build tons of cursor variants
-      waybar.enable = true;
     };
 
     gtk = {
