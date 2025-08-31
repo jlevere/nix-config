@@ -41,16 +41,12 @@
           variant = "mocha";
         };
       };
-      cursorTheme = {
-        name = "catppuccin-mocha-teal-cursors";
-        package = pkgs.catppuccin-cursors.mochaTeal;
-      };
     };
 
     # Ensure pointer cursor theme is set for Wayland and X11 apps
     home.pointerCursor = {
-      name = "catppuccin-mocha-teal-cursors";
-      package = pkgs.catppuccin-cursors.mochaTeal;
+      name = "Vanilla-DMZ";
+      package = pkgs.vanilla-dmz;
       size = 24;
       gtk.enable = true;
     };

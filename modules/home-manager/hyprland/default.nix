@@ -62,8 +62,6 @@
         env = [
           "NIXOS_OZONE_WL,1"
           "MOZ_ENABLE_WAYLAND,1"
-          "XCURSOR_THEME,catppuccin-mocha-teal-cursors"
-          "XCURSOR_SIZE,24"
         ];
       };
     };
