@@ -11,6 +11,7 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # replaces hardware.opengl.driSupport32Bit
+    extraPackages = [ pkgs.nvidia-vaapi-driver ];
   };
 
   # NVIDIA driver selection for X/Wayland
@@ -40,6 +41,7 @@
     GBM_BACKEND = "nvidia-drm";
     WLR_NO_HARDWARE_CURSORS = "1";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_RENDERER = "vulkan";
   };
 
   # Often helps Wayland session stability on NVIDIA

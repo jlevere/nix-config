@@ -2,7 +2,22 @@
 
 {
   home.packages = with pkgs; [
-    polkit
-    polkit_gnome
+    hyprpolkitagent
   ];
+
+  systemd.user.services."hyprpolkitagent" = {
+    Unit = {
+      Description = "HyprPolkitAgent";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecCondition = ''${pkgs.bash}/bin/bash -lc 'test -n "$HYPRLAND_INSTANCE_SIGNATURE"' '';
+      ExecStart = "${pkgs.hyprpolkitagent}/bin/hyprpolkitagent";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
 }
