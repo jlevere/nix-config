@@ -18,6 +18,7 @@
       pavucontrol
       rofi-wayland
       playerctl
+      helvum
     ];
 
     wayland.windowManager.hyprland = {

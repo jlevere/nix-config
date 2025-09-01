@@ -71,7 +71,7 @@
               ", XF86AudioPlay, exec, playerctl play-pause"
 
               # Lock screen
-              "$mainMod CTRL, L, exec, hyprlock"
+              "$mainMod CTRL, ESC, exec, hyprlock"
 
 	      ### Screenshots ###
 	      "$mainMod, S, exec, $HOME/.local/bin/screenshot screen"

@@ -31,6 +31,7 @@
       pythonWithPackages
       ripgrep
       rustscan
+      signal-desktop
       socat
       strace
       go-task
