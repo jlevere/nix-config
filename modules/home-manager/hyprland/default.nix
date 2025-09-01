@@ -7,6 +7,7 @@
     ./theme
     ./hypridle.nix
     ./hyprlock.nix
+    ./screenshot.nix
   ];
 
   config = {
