@@ -49,6 +49,8 @@
 	networking.hostName = "p620";
 	networking.networkmanager.enable = true;
 
+	time.timeZone = "America/Chicago";
+
 	services = {
 		libinput.enable = true;
 		printing.enable = true;

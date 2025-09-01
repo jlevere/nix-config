@@ -73,6 +73,9 @@
               # Lock screen
               "$mainMod CTRL, ESC, exec, hyprlock"
 
+              # Notification center
+              "$mainMod, N, exec, swaync-client -t -sw"
+
 	      ### Screenshots ###
 	      "$mainMod, S, exec, $HOME/.local/bin/screenshot screen"
 	      "$mainMod SHIFT, S, exec, $HOME/.local/bin/screenshot area"
