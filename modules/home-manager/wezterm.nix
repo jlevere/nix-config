@@ -7,7 +7,7 @@ _:
       return {
         color_scheme = "Catppuccin Mocha",
         front_end = "WebGpu",
-        enable_tab_bar = true,
+        enable_tab_bar = false,
       }
     '';
   };
