@@ -32,7 +32,19 @@ _:
         "on-scroll-up" = "hyprctl dispatch workspace e+1";
         "on-scroll-down" = "hyprctl dispatch workspace e-1";
         "on-click-right" = "hyprctl dispatch togglespecialworkspace";
-        format = "{icon}";
+        format = "{icon} {windows}";
+        "format-window-separator" = " ";
+        "window-rewrite" = {
+          "class<firefox>" = "";
+          "class<cursor>" = "";
+          "class<Chromium>" = "";
+          "class<Google-chrome>" = "";
+          "class<org.wezfurlong.wezterm>" = "";
+          "class<Code>" = "";
+          "class<vesktop>" = "󰙯";
+        };
+        "window-rewrite-default" = "";
+        "workspace-taskbar" = { };
         "format-icons" = {
           "1" = "󰲠";
           "2" = "󰲢";
@@ -68,10 +80,6 @@ _:
         format = "{title}";
         "max-length" = 40;
         "separate-outputs" = true;
-        rewrite = {
-          ".* - Mozilla Firefox" = "  {title}";
-          ".* - Code" = "  {title}";
-        };
         "tooltip" = true;
       };
 
