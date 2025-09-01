@@ -18,9 +18,9 @@
     in
     {
       myUser.keybinds = {
-        "SUPER SHIFT, RETURN".package = pkgs.firefox;
+        "$mainMod SHIFT, RETURN".package = pkgs.firefox;
 
-        "SUPER, p".script = ''
+        "$mainMod, p".script = ''
           ${getExe pkgs.playerctl} play-pause
         '';
       };
@@ -51,12 +51,14 @@
               # Workspace navigation
               "$mainMod, bracketleft, workspace, -1"
               "$mainMod, bracketright, workspace, +1"
+              "$mainMod CTRL, left, workspace, -1"
+              "$mainMod CTRL, right, workspace, +1"
 
               # Directional focus (vim-style) and arrows
-              "SUPER, H, movefocus, l"
-              "SUPER, J, movefocus, d"
-              "SUPER, K, movefocus, u"
-              "SUPER, L, movefocus, r"
+              "$mainMod, H, movefocus, l"
+              "$mainMod, J, movefocus, d"
+              "$mainMod, K, movefocus, u"
+              "$mainMod, L, movefocus, r"
               "$mainMod, left, movefocus, l"
               "$mainMod, right, movefocus, r"
               "$mainMod, up, movefocus, u"
@@ -72,15 +74,15 @@
               "$mainMod CTRL, L, exec, hyprlock"
 
 	      ### Screenshots ###
-	      "SUPER,S,exec,$HOME/.local/bin/screenshot screen"
-	      "SUPERSHIFT,S,exec,$HOME/.local/bin/screenshot area"
-	      "SUPERALT,S,exec,$HOME/.local/bin/screenshot active"
-	      "SUPERSHIFTALT,S,exec,$HOME/.local/bin/screenshot window"
-	      "SUPERCTRL,S,exec,$HOME/.local/bin/screenshot copy-screen"
+	      "$mainMod, S, exec, $HOME/.local/bin/screenshot screen"
+	      "$mainMod SHIFT, S, exec, $HOME/.local/bin/screenshot area"
+	      "$mainMod ALT, S, exec, $HOME/.local/bin/screenshot active"
+	      "$mainMod SHIFT ALT, S, exec, $HOME/.local/bin/screenshot window"
+	      "$mainMod CTRL, S, exec, $HOME/.local/bin/screenshot copy-screen"
 	      # This is the useful one 
-	      "SUPERSHIFTCTRL,S,exec,$HOME/.local/bin/screenshot copy-area"
-	      "SUPERALTCTRL,S,exec,$HOME/.local/bin/screenshot copy-active"
-	      "SUPERSHIFTALTCTRL,S,exec,$HOME/.local/bin/screenshot copy-window"
+	      "$mainMod SHIFT CTRL, S, exec, $HOME/.local/bin/screenshot copy-area"
+	      "$mainMod ALT CTRL, S, exec, $HOME/.local/bin/screenshot copy-active"
+	      "$mainMod SHIFT ALT CTRL, S, exec, $HOME/.local/bin/screenshot copy-window"
 
 
             ]
