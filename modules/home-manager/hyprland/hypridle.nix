@@ -4,9 +4,9 @@
   # Hypridle: idle manager (desktop-friendly; lock, then DPMS off)
   xdg.configFile."hypr/hypridle.conf".text = ''
     general {
-      lock_cmd = "pidof hyprlock || hyprlock"
-      before_sleep_cmd = "loginctl lock-session"
-      after_sleep_cmd = "hyprctl dispatch dpms on"
+      lock_cmd = "${pkgs.procps}/bin/pgrep -x hyprlock >/dev/null || ${pkgs.hyprlock}/bin/hyprlock"
+      before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session"
+      after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"
       inhibit_sleep = 3
       ignore_dbus_inhibit = false
     }
@@ -14,15 +14,15 @@
     # Lock after 5 minutes
     listener {
       timeout = 300
-      on-timeout = "loginctl lock-session"
-      on-resume = "hyprctl dispatch dpms on"
+      on-timeout = "${pkgs.systemd}/bin/loginctl lock-session"
+      on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"
     }
 
     # Turn displays off after 7 minutes
     listener {
       timeout = 420
-      on-timeout = "hyprctl dispatch dpms off"
-      on-resume = "hyprctl dispatch dpms on"
+      on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off"
+      on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on"
     }
   '';
 

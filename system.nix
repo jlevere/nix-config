@@ -55,6 +55,10 @@
 		openssh.enable = false;
 	};
 
+	environment.systemPackages = with pkgs; [
+		home-manager
+	];
+
 	system.stateVersion = "25.05";
 }
 

@@ -16,8 +16,11 @@
       libsForQt5.qtstyleplugin-kvantum
     ];
 
-    home.file.".wallpapers/wallpaper.png".source =
-      inputs.self + "/assets/wallpapers/nixos-wallpaper-catppuccin-mocha.png";
+    home.file.".background".source =
+      builtins.path { path = ../../../../assets/wallpapers/die.jpg; };
+
+    home.file.".face".source =
+      builtins.path { path = ../../../../assets/avatar.png; };
 
     qt = {
       enable = true;
@@ -53,8 +56,8 @@
 
     xdg.configFile = {
       "hypr/hyprpaper.conf".text = ''
-        preload = ~/.wallpapers/wallpaper.png
-        wallpaper = , ~/.wallpapers/wallpaper.png
+        preload = ~/.background
+        wallpaper = , ~/.background
       '';
       "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi-wayland) {
         source = ./rofi/catppuccin-mocha.rasi;
