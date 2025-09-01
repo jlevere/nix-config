@@ -13,6 +13,7 @@
     ./cuda.nix
     ./dconf.nix
     ./dev-nettools.nix
+    ./docker.nix
     ./firmware.nix
     ./fish.nix
     ./fonts.nix
