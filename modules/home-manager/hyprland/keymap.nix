@@ -71,13 +71,18 @@
               # Lock screen
               "$mainMod CTRL, L, exec, hyprlock"
 
-              # Screenshots (use $mainMod+Print to avoid accidental number-key overlap)
-              "$mainMod, Print, exec, $HOME/.local/bin/screenshot screen"
-              "$mainMod SHIFT, Print, exec, $HOME/.local/bin/screenshot area"
-              "$mainMod ALT, Print, exec, $HOME/.local/bin/screenshot active"
-              "$mainMod CTRL, Print, exec, $HOME/.local/bin/screenshot copy-screen"
-              "$mainMod CTRL SHIFT, Print, exec, $HOME/.local/bin/screenshot copy-area"
-              "$mainMod CTRL ALT, Print, exec, $HOME/.local/bin/screenshot copy-active"
+	      ### Screenshots ###
+	      "SUPER,S,exec,$HOME/.local/bin/screenshot screen"
+	      "SUPERSHIFT,S,exec,$HOME/.local/bin/screenshot area"
+	      "SUPERALT,S,exec,$HOME/.local/bin/screenshot active"
+	      "SUPERSHIFTALT,S,exec,$HOME/.local/bin/screenshot window"
+	      "SUPERCTRL,S,exec,$HOME/.local/bin/screenshot copy-screen"
+	      # This is the useful one 
+	      "SUPERSHIFTCTRL,S,exec,$HOME/.local/bin/screenshot copy-area"
+	      "SUPERALTCTRL,S,exec,$HOME/.local/bin/screenshot copy-active"
+	      "SUPERSHIFTALTCTRL,S,exec,$HOME/.local/bin/screenshot copy-window"
+
+
             ]
             ++ woworkspaces
             ++ moveworkspaces;
