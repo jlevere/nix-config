@@ -27,7 +27,7 @@
     wezterm.enable = true;
     dev-packages.enable = true;
     zellij.enable = true;
-    bluetooth.enable = true;
+    bluetooth.enable = false;
 
     git.allowedSigners = {
       url = "https://github.com/jLevere.keys";
