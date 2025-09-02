@@ -15,6 +15,13 @@
 		kernelModules = [
 			"cpuid"
 		];
+
+		# Allow unlocking LUKS via TPM2 to avoid needing a keyboard at boot
+		initrd.luks.devices."luks-2cbe7a7a-182f-4827-8ae7-726207d3c60f" = {
+			bypassWorkqueues = true;
+			allowDiscards = true;
+			crypttabExtraOpts = [ "tpm2-device=auto" ];
+		};
 	};
 
 	# Replace missing disk swap with zram swap to avoid boot timeout
@@ -40,7 +47,7 @@
 		initialPassword = "password";
 		description = "admin";
 		shell = pkgs.fish;
-		extraGroups = [ "networkmanager" "wheel" "docker" "i2c" ];
+		extraGroups = [ "networkmanager" "wheel" "docker" "i2c" "bluetooth" ];
 	};
 
 	users.groups.docker.members = [ "admin" ];
