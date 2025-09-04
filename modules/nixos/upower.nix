@@ -3,5 +3,3 @@
 {
   services.upower.enable = true;
 }
-
-

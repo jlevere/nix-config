@@ -47,5 +47,3 @@
   # Often helps Wayland session stability on NVIDIA
   boot.kernelParams = [ "nvidia-drm.modeset=1" ];
 }
-
-

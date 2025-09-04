@@ -27,7 +27,7 @@
       portalPackage = null;
       systemd.variables = [ "--all" ];
 
-      plugins = [];
+      plugins = [ ];
 
       settings = {
         general = {
@@ -59,7 +59,6 @@
         decoration = {
           rounding = 8;
         };
-
 
         env = [
           "NIXOS_OZONE_WL,1"

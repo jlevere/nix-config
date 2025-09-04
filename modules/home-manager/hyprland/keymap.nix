@@ -33,8 +33,30 @@
             let
               toWSNumber = n: (toString (if n == 0 then 10 else n));
 
-              moveworkspaces = map (n: "$mainMod SHIFT, ${toString n}, movetoworkspace, ${toWSNumber n}") [ 1 2 3 4 5 6 7 8 9 0 ];
-              woworkspaces  = map (n: "$mainMod, ${toString n}, workspace, ${toWSNumber n}")          [ 1 2 3 4 5 6 7 8 9 0 ];
+              moveworkspaces = map (n: "$mainMod SHIFT, ${toString n}, movetoworkspace, ${toWSNumber n}") [
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                0
+              ];
+              woworkspaces = map (n: "$mainMod, ${toString n}, workspace, ${toWSNumber n}") [
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                0
+              ];
             in
             [
               # Launch terminal and app launcher
@@ -76,17 +98,16 @@
               # Notification center
               "$mainMod, N, exec, swaync-client -t -sw"
 
-	      ### Screenshots ###
-	      "$mainMod, S, exec, $HOME/.local/bin/screenshot screen"
-	      "$mainMod SHIFT, S, exec, $HOME/.local/bin/screenshot area"
-	      "$mainMod ALT, S, exec, $HOME/.local/bin/screenshot active"
-	      "$mainMod SHIFT ALT, S, exec, $HOME/.local/bin/screenshot window"
-	      "$mainMod CTRL, S, exec, $HOME/.local/bin/screenshot copy-screen"
-	      # This is the useful one 
-	      "$mainMod SHIFT CTRL, S, exec, $HOME/.local/bin/screenshot copy-area"
-	      "$mainMod ALT CTRL, S, exec, $HOME/.local/bin/screenshot copy-active"
-	      "$mainMod SHIFT ALT CTRL, S, exec, $HOME/.local/bin/screenshot copy-window"
-
+              ### Screenshots ###
+              "$mainMod, S, exec, $HOME/.local/bin/screenshot screen"
+              "$mainMod SHIFT, S, exec, $HOME/.local/bin/screenshot area"
+              "$mainMod ALT, S, exec, $HOME/.local/bin/screenshot active"
+              "$mainMod SHIFT ALT, S, exec, $HOME/.local/bin/screenshot window"
+              "$mainMod CTRL, S, exec, $HOME/.local/bin/screenshot copy-screen"
+              # This is the useful one
+              "$mainMod SHIFT CTRL, S, exec, $HOME/.local/bin/screenshot copy-area"
+              "$mainMod ALT CTRL, S, exec, $HOME/.local/bin/screenshot copy-active"
+              "$mainMod SHIFT ALT CTRL, S, exec, $HOME/.local/bin/screenshot copy-window"
 
             ]
             ++ woworkspaces

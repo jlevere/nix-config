@@ -16,11 +16,9 @@
       libsForQt5.qtstyleplugin-kvantum
     ];
 
-    home.file.".background".source =
-      builtins.path { path = ../../../../assets/wallpapers/die.jpg; };
+    home.file.".background".source = builtins.path { path = ../../../../assets/wallpapers/die.jpg; };
 
-    home.file.".face".source =
-      builtins.path { path = ../../../../assets/avatar.png; };
+    home.file.".face".source = builtins.path { path = ../../../../assets/avatar.png; };
 
     qt = {
       enable = true;

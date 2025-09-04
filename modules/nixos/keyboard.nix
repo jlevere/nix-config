@@ -10,5 +10,3 @@
   # Apply XKB settings to virtual consoles as well
   console.useXkbConfig = true;
 }
-
-

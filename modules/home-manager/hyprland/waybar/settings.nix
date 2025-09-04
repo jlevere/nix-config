@@ -100,7 +100,11 @@ _:
       "pulseaudio" = {
         format = "{icon}";
         format-muted = "";
-        "format-icons" = [ "" "" "" ];
+        "format-icons" = [
+          ""
+          ""
+          ""
+        ];
         on-click = "pavucontrol";
         tooltip = true;
       };

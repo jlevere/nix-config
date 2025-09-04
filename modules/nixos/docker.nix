@@ -5,16 +5,21 @@
     enable = true;
     liveRestore = true;
     # enableNvidia = true;
-    
+
     daemon.settings = {
       log-driver = "journald";
     };
+
+    extraPackages = with pkgs; [
+      docker-buildx
+      docker-compose
+    ];
   };
 
-  environment.systemPackages = with pkgs; [
-    docker-compose
-    docker-buildx
-  ];
+  environment.variables = {
+    DOCKER_BUILDKIT = "1";
+    COMPOSE_DOCKER_CLI_BUILD = "1";
+  };
 
   systemd.services.docker.wantedBy = [ "multi-user.target" ];
 }

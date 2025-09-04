@@ -6,5 +6,3 @@
   services.udev.packages = [ pkgs.ddcutil ];
   environment.systemPackages = [ pkgs.ddcutil ];
 }
-
-
