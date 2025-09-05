@@ -26,6 +26,7 @@
     ./pipewire.nix
     ./polkit.nix
     ./qt-wayland.nix
+    ./tailscale.nix
     ./upower.nix
     ./usb.nix
     ./xdg-utils.nix
