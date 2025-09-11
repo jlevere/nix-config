@@ -47,7 +47,7 @@
 		initialPassword = "password";
 		description = "admin";
 		shell = pkgs.fish;
-		extraGroups = [ "networkmanager" "wheel" "docker" "i2c" "bluetooth" ];
+		extraGroups = [ "networkmanager" "wheel" "docker" "i2c" "bluetooth" "libvirtd" "kvm" ];
 	};
 
 	users.groups.docker.members = [ "admin" ];
