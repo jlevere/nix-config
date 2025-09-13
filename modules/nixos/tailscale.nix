@@ -7,5 +7,3 @@
     useRoutingFeatures = "client";
   };
 }
-
-
