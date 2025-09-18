@@ -8,6 +8,11 @@
 
     daemon.settings = {
       log-driver = "journald";
+      runtimes = {
+        runsc = {
+          path = "${pkgs.gvisor}/bin/runsc";
+        };
+      };
     };
 
     extraPackages = with pkgs; [
