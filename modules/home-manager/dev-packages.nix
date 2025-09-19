@@ -29,6 +29,7 @@
       nil
       netcat
       pythonWithPackages
+      remmina
       ripgrep
       rustscan
       signal-desktop
