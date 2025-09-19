@@ -5,8 +5,6 @@
     ./keymap.nix
     ./waybar
     ./theme
-    ./hypridle.nix
-    ./hyprlock.nix
     ./screenshot.nix
   ];
 
