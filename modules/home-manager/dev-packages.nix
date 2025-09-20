@@ -28,6 +28,7 @@
       ltrace
       nil
       netcat
+      obsidian
       pythonWithPackages
       remmina
       ripgrep
