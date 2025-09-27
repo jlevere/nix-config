@@ -18,8 +18,8 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
-    # Ampere supports the open kernel module
-    open = true;
+    # Match current setup: proprietary kernel module
+    open = false;
 
     # Choose a stable packaged branch
     package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -42,6 +42,8 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     WLR_RENDERER = "vulkan";
+    LIBVA_DRIVER_NAME = "nvidia";
+    NVD_BACKEND = "direct"; # for nvidia-vaapi-driver
   };
 
   # Often helps Wayland session stability on NVIDIA

@@ -13,7 +13,7 @@
   myUser = {
     fonts.enable = true;
     git.enable = true;
-    fish.enable = true;
+    fish.enable = false;
     direnv.enable = true;
     nix-registry.enable = true;
     man.enable = true;
@@ -26,7 +26,7 @@
     polkit-agent.enable = true;
     wezterm.enable = true;
     dev-packages.enable = true;
-    zellij.enable = true;
+    zellij.enable = false;
     bluetooth.enable = true;
 
     git.allowedSigners = {
@@ -36,8 +36,8 @@
   };
 
   home = {
-    username = "admin";
-    homeDirectory = lib.mkDefault "/home/admin";
+    username = "pop";
+    homeDirectory = lib.mkDefault "/home/pop";
     stateVersion = "25.05";
   };
 }

@@ -60,8 +60,11 @@
             in
             [
               # Launch terminal and app launcher
-              "$mainMod, return, exec, wezterm"
-              "$mainMod, SPACE, exec, rofi -show drun"
+              "$mainMod, return, exec, ghostty"
+              "$mainMod, SPACE, exec, fuzzel"
+              "$mainMod, D, exec, fuzzel"
+              "$mainMod, T, exec, dolphin"
+              "$mainMod, B, exec, brave"
 
               # Window management
               "$mainMod, Q, killactive"
@@ -93,10 +96,13 @@
               ", XF86AudioPlay, exec, playerctl play-pause"
 
               # Lock screen
-              "$mainMod CTRL, ESC, exec, hyprlock"
+              "$mainMod CTRL, L, exec, hyprlock"
 
               # Notification center
               "$mainMod, N, exec, swaync-client -t -sw"
+
+              # Exit Hyprland
+              "$mainMod SHIFT, E, exit"
 
               ### Screenshots ###
               "$mainMod, S, exec, $HOME/.local/bin/screenshot screen"

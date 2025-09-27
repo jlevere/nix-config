@@ -29,7 +29,7 @@ let
       };
 in
 {
-  imports = features;
+  imports = features ++ [ ./neovim ];
 
   # Common desktop tools for both GNOME and Hyprland sessions
   home.packages = with pkgs; [
@@ -41,5 +41,15 @@ in
     code-cursor
     nixfmt-rfc-style
     nil
+    ghostty
+    fuzzel
+    tmux
   ];
+
+  xdg.configFile."ghostty/config".text = ''
+    font-family = "JetBrainsMono Nerd Font"
+    font-size   = 12
+    theme       = "Everforest Dark - Hard"
+    background-opacity = 0.90
+  '';
 }

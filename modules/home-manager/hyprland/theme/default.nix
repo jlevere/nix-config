@@ -16,9 +16,9 @@
       libsForQt5.qtstyleplugin-kvantum
     ];
 
-    home.file.".background".source = builtins.path { path = ../../../../assets/wallpapers/die.jpg; };
+    # No managed .background file; Hyprpaper reads the file from your home directly.
 
-    home.file.".face".source = builtins.path { path = ../../../../assets/avatar.png; };
+    home.file.".face".source = builtins.path { path = ../../../../assets/pop.jpg; };
 
     qt = {
       enable = true;
@@ -54,8 +54,7 @@
 
     xdg.configFile = {
       "hypr/hyprpaper.conf".text = ''
-        preload = ~/.background
-        wallpaper = , ~/.background
+        wallpaper = , /home/pop/Pictures/wallpapers/pretty.png
       '';
       "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi-wayland) {
         source = ./rofi/catppuccin-mocha.rasi;

@@ -21,13 +21,6 @@
     kernelModules = [
       "cpuid"
     ];
-
-    # Allow unlocking LUKS via TPM2 to avoid needing a keyboard at boot
-    initrd.luks.devices."luks-2cbe7a7a-182f-4827-8ae7-726207d3c60f" = {
-      bypassWorkqueues = true;
-      allowDiscards = true;
-      crypttabExtraOpts = [ "tpm2-device=auto" ];
-    };
   };
 
   # Replace missing disk swap with zram swap to avoid boot timeout
@@ -40,7 +33,7 @@
   swapDevices = lib.mkForce [ ];
 
   # Home Manager users (co-located with system root)
-  home-manager.users.admin =
+  home-manager.users.pop =
     { ... }:
     {
       imports = [
@@ -50,11 +43,10 @@
     };
 
   # System users (simple inline style)
-  users.users.admin = {
+  users.users.pop = {
     isNormalUser = true;
-    initialPassword = "password";
-    description = "admin";
-    shell = pkgs.fish;
+    description = "pop";
+    shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -63,21 +55,31 @@
       "bluetooth"
       "libvirtd"
       "kvm"
+      "input"
     ];
   };
 
-  users.groups.docker.members = [ "admin" ];
-  users.groups.i2c.members = [ "admin" ];
+  users.groups.docker.members = [ "pop" ];
+  users.groups.i2c.members = [ "pop" ];
 
-  networking.hostName = "p620";
+  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
+  networking.networkmanager.unmanaged = [ "interface-name:tailscale0" ];
 
   time.timeZone = "America/Chicago";
 
   services = {
     libinput.enable = true;
     printing.enable = true;
-    openssh.enable = false;
+    openssh.enable = true;
+    resolved.enable = true;
+    tailscale.extraUpFlags = [ "--accept-dns=false" ];
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
+    desktopManager.plasma6.enable = true;
   };
 
   programs.azureVpnClient.enable = true;
@@ -85,6 +87,32 @@
   environment.systemPackages = with pkgs; [
     home-manager
   ];
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
+  programs.zsh.enable = true;
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    theme = "powerlevel10k";
+    custom = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
+    plugins = [
+      "git" "vi-mode" "z" "sudo" "colored-man-pages"
+      "history-substring-search" "fzf" "extract"
+    ];
+  };
+  programs.zsh.autosuggestions.enable = true;
+  programs.zsh.syntaxHighlighting.enable = true;
+  programs.zsh.enableCompletion = true;
+  programs.zsh.promptInit = ''
+    source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+    [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+  '';
+  programs.zsh.interactiveShellInit = ''
+    alias ls='eza --icons --group-directories-first'
+    alias cat='bat --paging=never --style=plain'
+  '';
 
   system.stateVersion = "25.05";
 }
