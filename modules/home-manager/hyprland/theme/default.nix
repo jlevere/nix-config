@@ -16,7 +16,7 @@
       libsForQt5.qtstyleplugin-kvantum
     ];
 
-    # No managed .background file; Hyprpaper reads the file from your home directly.
+    home.file.".background".source = builtins.path { path = ../../../../assets/wallpapers/pretty.png; };
 
     home.file.".face".source = builtins.path { path = ../../../../assets/pop.jpg; };
 

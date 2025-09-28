@@ -29,7 +29,7 @@ let
       };
 in
 {
-  imports = features ++ [ ./neovim ];
+  imports = features;
 
   # Common desktop tools for both GNOME and Hyprland sessions
   home.packages = with pkgs; [
