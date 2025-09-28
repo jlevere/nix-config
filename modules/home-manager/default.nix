@@ -44,6 +44,7 @@ in
     ghostty
     fuzzel
     tmux
+    wdisplays
   ];
 
   xdg.configFile."ghostty/config".text = ''

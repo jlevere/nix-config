@@ -119,11 +119,12 @@
             ++ woworkspaces
             ++ moveworkspaces;
 
+          # Move tiled windows logically. For floating windows, use mouse drag or add separate moveactive binds.
           binde = [
-            "$mainMod SHIFT, h, moveactive, -20 0"
-            "$mainMod SHIFT, l, moveactive, 20 0"
-            "$mainMod SHIFT, k, moveactive, 0 -20"
-            "$mainMod SHIFT, j, moveactive, 0 20"
+            "$mainMod SHIFT, H, movewindow, l"
+            "$mainMod SHIFT, L, movewindow, r"
+            "$mainMod SHIFT, K, movewindow, u"
+            "$mainMod SHIFT, J, movewindow, d"
 
             "$mainMod CTRL, h, resizeactive, -30 0"
             "$mainMod CTRL, l, resizeactive, 30 0"
