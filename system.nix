@@ -99,7 +99,7 @@
     custom = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
     plugins = [
       "git" "vi-mode" "z" "sudo" "colored-man-pages"
-      "history-substring-search" "fzf" "extract"
+      "history-substring-search" "extract"
     ];
   };
   programs.zsh.autosuggestions.enable = true;

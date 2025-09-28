@@ -51,7 +51,10 @@
         exec-once = [ ];
 
         monitor = [
-          ", preferred, auto, 1"
+          # Left monitor: HDMI-A-3 rotated 270° (transform 3)
+          "HDMI-A-3, preferred, 0x0, 1.5, transform, 3"
+          # Right monitor: DP-4 to the right of HDMI-A-3 (2160 wide when HDMI-A-3 is rotated)
+          "DP-4, preferred, 2160x0, 1"
         ];
 
         decoration = {

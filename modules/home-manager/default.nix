@@ -47,10 +47,19 @@ in
     wdisplays
   ];
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  home.file.".zshrc".text = ''
+    # Managed by Home Manager. Intentionally minimal to suppress zsh-newuser-install.
+  '';
+
   xdg.configFile."ghostty/config".text = ''
     font-family = "JetBrainsMono Nerd Font"
     font-size   = 12
-    theme       = "Everforest Dark - Hard"
+    theme       = Srcery
     background-opacity = 0.90
   '';
 }

@@ -54,7 +54,8 @@
 
     xdg.configFile = {
       "hypr/hyprpaper.conf".text = ''
-        wallpaper = , /home/pop/Pictures/wallpapers/pretty.png
+        preload = ~/.background
+        wallpaper = , ~/.background
       '';
       "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi-wayland) {
         source = ./rofi/catppuccin-mocha.rasi;
