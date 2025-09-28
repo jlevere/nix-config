@@ -62,7 +62,7 @@
   users.groups.docker.members = [ "pop" ];
   users.groups.i2c.members = [ "pop" ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "magic-box";
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
   networking.networkmanager.unmanaged = [ "interface-name:tailscale0" ];

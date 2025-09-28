@@ -1,24 +1,29 @@
 { pkgs, ... }:
 
 {
-  hardware.bluetooth.enable = false;
-  hardware.bluetooth.powerOnBoot = false;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
 
   hardware.bluetooth.settings = {
     General = {
       Experimental = true;
       FastConnectable = true;
-      ControllerMode = "bredr";
+      ControllerMode = "dual";
     };
     Policy = {
       AutoEnable = true;
     };
   };
 
-  # Ensure adapter is powered after daemon starts/resume
-  systemd.services.bluetooth.serviceConfig.ExecStartPost = [
-    "${pkgs.bluez}/bin/bluetoothctl power on"
-    "${pkgs.bluez}/bin/btmgmt --index 0 power on"
-  ];
+  # Let BlueZ manage power via AutoEnable and leave post-commands out
+
+  # A2DP codecs for PipeWire
+  services.pipewire.wireplumber.extraConfig.bluetooth-policy = {
+    "monitor.bluez.rules" = [
+      { matches = [ { "device.name" = "bluez_card.*"; } ];
+        actions = { update-props = { "bluez5.enable-msbc" = true; "bluez5.enable-hw-volume" = true; "bluez5.enable-a2dp-codec-switching" = true; }; };
+      }
+    ];
+  };
 }

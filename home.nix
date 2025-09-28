@@ -6,8 +6,8 @@
 
 {
   programs.git = {
-    userName = "jLevere";
-    userEmail = "71566629+jLevere@users.noreply.github.com";
+    userName = "stackviolator";
+    userEmail = "59704399+stackviolator@users.noreply.github.com";
   };
 
   myUser = {
@@ -30,8 +30,9 @@
     bluetooth.enable = false;
 
     git.allowedSigners = {
-      url = "https://github.com/jLevere.keys";
-      sha256 = "1g87mxaaizyn8y5l0mdkxh14gywp4xjxlhxx2327m1q528bzn7gp";
+      url = null;
+      sha256 = null;
+      email = null;
     };
   };
 
