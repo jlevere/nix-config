@@ -41,5 +41,25 @@ in
     code-cursor
     nixfmt-rfc-style
     nil
+    ghostty
+    fuzzel
+    tmux
+    wdisplays
   ];
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  home.file.".zshrc".text = ''
+    # Managed by Home Manager. Intentionally minimal to suppress zsh-newuser-install.
+  '';
+
+  xdg.configFile."ghostty/config".text = ''
+    font-family = "JetBrainsMono Nerd Font"
+    font-size   = 12
+    theme       = Srcery
+    background-opacity = 0.90
+  '';
 }

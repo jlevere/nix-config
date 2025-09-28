@@ -14,7 +14,7 @@
       hypridle
       hyprpaper
       pavucontrol
-      rofi-wayland
+      fuzzel
       playerctl
       helvum
     ];
@@ -45,13 +45,14 @@
         };
 
         cursor = {
-          no_hardware_cursors = true;
+          no_hardware_cursors = false;
         };
 
         exec-once = [ ];
 
         monitor = [
-          ", preferred, auto, 1"
+          "HDMI-A-3, preferred, 0x0, 1.5, transform, 3"
+          "DP-4, 3440x1440@144, 1440x240, 1"
         ];
 
         decoration = {
@@ -61,6 +62,7 @@
         env = [
           "NIXOS_OZONE_WL,1"
           "MOZ_ENABLE_WAYLAND,1"
+          "WGPU_BACKEND,gl"
         ];
       };
     };

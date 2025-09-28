@@ -60,8 +60,11 @@
             in
             [
               # Launch terminal and app launcher
-              "$mainMod, return, exec, wezterm"
-              "$mainMod, SPACE, exec, rofi -show drun"
+              "$mainMod, return, exec, ghostty"
+              "$mainMod, SPACE, exec, fuzzel"
+              "$mainMod, D, exec, fuzzel"
+              "$mainMod, T, exec, dolphin"
+              "$mainMod, B, exec, brave"
 
               # Window management
               "$mainMod, Q, killactive"
@@ -93,10 +96,13 @@
               ", XF86AudioPlay, exec, playerctl play-pause"
 
               # Lock screen
-              "$mainMod CTRL, ESC, exec, hyprlock"
+              "$mainMod CTRL, L, exec, hyprlock"
 
               # Notification center
               "$mainMod, N, exec, swaync-client -t -sw"
+
+              # Exit Hyprland
+              "$mainMod SHIFT, E, exit"
 
               ### Screenshots ###
               "$mainMod, S, exec, $HOME/.local/bin/screenshot screen"
@@ -113,11 +119,12 @@
             ++ woworkspaces
             ++ moveworkspaces;
 
+          # Move tiled windows logically. For floating windows, use mouse drag or add separate moveactive binds.
           binde = [
-            "$mainMod SHIFT, h, moveactive, -20 0"
-            "$mainMod SHIFT, l, moveactive, 20 0"
-            "$mainMod SHIFT, k, moveactive, 0 -20"
-            "$mainMod SHIFT, j, moveactive, 0 20"
+            "$mainMod SHIFT, H, movewindow, l"
+            "$mainMod SHIFT, L, movewindow, r"
+            "$mainMod SHIFT, K, movewindow, u"
+            "$mainMod SHIFT, J, movewindow, d"
 
             "$mainMod CTRL, h, resizeactive, -30 0"
             "$mainMod CTRL, l, resizeactive, 30 0"
