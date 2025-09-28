@@ -45,16 +45,14 @@
         };
 
         cursor = {
-          no_hardware_cursors = true;
+          no_hardware_cursors = false;
         };
 
         exec-once = [ ];
 
         monitor = [
-          # Left monitor: HDMI-A-3 rotated 270° (transform 3)
           "HDMI-A-3, preferred, 0x0, 1.5, transform, 3"
-          # Right monitor: DP-4 to the right of HDMI-A-3 (2160 wide when HDMI-A-3 is rotated)
-          "DP-4, preferred, 2160x0, 1"
+          "DP-4, 3440x1440@144, 1440x240, 1"
         ];
 
         decoration = {
@@ -64,6 +62,7 @@
         env = [
           "NIXOS_OZONE_WL,1"
           "MOZ_ENABLE_WAYLAND,1"
+          "WGPU_BACKEND,gl"
         ];
       };
     };

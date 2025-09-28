@@ -39,11 +39,12 @@
   # Wayland + NVIDIA niceties (GNOME / Hyprland)
   environment.variables = {
     GBM_BACKEND = "nvidia-drm";
-    WLR_NO_HARDWARE_CURSORS = "1";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     WLR_RENDERER = "vulkan";
     LIBVA_DRIVER_NAME = "nvidia";
     NVD_BACKEND = "direct"; # for nvidia-vaapi-driver
+    __GL_VRR_ALLOWED = "1";
+    __GL_GSYNC_ALLOWED = "1";
   };
 
   # Often helps Wayland session stability on NVIDIA
