@@ -17,6 +17,8 @@
       fuzzel
       playerctl
       helvum
+      wl-clipboard
+      xclip
     ];
 
     wayland.windowManager.hyprland = {
@@ -53,6 +55,19 @@
         monitor = [
           "HDMI-A-3, preferred, 0x0, 1.5, transform, 3"
           "DP-4, 3440x1440@144, 1440x240, 1"
+        ];
+
+        workspace = [
+          "1, monitor:DP-4, persistent:true, default:true"
+          "2, monitor:DP-4, persistent:true"
+          "3, monitor:HDMI-A-3, persistent:true, default:true"
+          "4, monitor:HDMI-A-3, persistent:true"
+          "5, monitor:DP-4, persistent:true"
+          "6, monitor:DP-4, persistent:true"
+          "7, monitor:HDMI-A-3, persistent:true"
+          "8, monitor:HDMI-A-3, persistent:true"
+          "9, monitor:DP-4, persistent:true"
+          "10, monitor:DP-4, persistent:true"
         ];
 
         decoration = {
