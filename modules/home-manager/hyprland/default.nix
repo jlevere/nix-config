@@ -14,7 +14,7 @@
       hypridle
       hyprpaper
       pavucontrol
-      rofi-wayland
+      rofi
       playerctl
       helvum
     ];

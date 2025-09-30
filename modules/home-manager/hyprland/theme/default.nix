@@ -57,10 +57,10 @@
         preload = ~/.background
         wallpaper = , ~/.background
       '';
-      "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi-wayland) {
+      "rofi/catppuccin-mocha.rasi" = lib.mkIf (pkgs ? rofi) {
         source = ./rofi/catppuccin-mocha.rasi;
       };
-      "rofi/config.rasi" = lib.mkIf (pkgs ? rofi-wayland) { source = ./rofi/config.rasi; };
+      "rofi/config.rasi" = lib.mkIf (pkgs ? rofi) { source = ./rofi/config.rasi; };
     };
   };
 }
