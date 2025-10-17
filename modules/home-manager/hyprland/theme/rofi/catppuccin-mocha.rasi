@@ -34,7 +34,6 @@ inputbar {
     background-color: @bg-col;
     border-radius: 0px;
     padding: 2px;
-    border-bottom: 1px solid @border-col;
 }
 
 prompt {
@@ -68,7 +67,6 @@ element {
     background-color: transparent;
     text-color: @fg-col;
     border-radius: 0px;
-    border-left: 2px solid transparent;
 }
 
 element-icon {
@@ -79,12 +77,10 @@ element-icon {
 element selected {
     background-color: @selected-col;
     text-color: @mauve;
-    border-left: 2px solid @mauve;
 }
 
 mode-switcher {
     spacing: 0;
-    border-top: 1px solid @border-col;
     padding-top: 8px;
     margin: 8px 12px 0px 12px;
 }
@@ -100,7 +96,6 @@ button {
 button selected {
     background-color: transparent;
     text-color: @blue;
-    border-bottom: 1px solid @blue;
 }
 
 message {
@@ -108,7 +103,6 @@ message {
     margin: 8px 12px;
     padding: 8px;
     border-radius: 0px;
-    border-left: 2px solid @blue;
 }
 
 textbox {

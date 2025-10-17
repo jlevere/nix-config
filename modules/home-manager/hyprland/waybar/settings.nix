@@ -25,7 +25,7 @@ _:
         "tray"
         "custom/notifications"
         "network"
-        "pulseaudio"
+        "wireplumber"
       ];
 
       "hyprland/workspaces" = {
@@ -99,7 +99,7 @@ _:
       "clock" = {
         format = " {:%H:%M}";
         "format-alt" = " {:%A, %B %d, %Y}";
-        tooltip-format = "<tt><small>{calendar}</small></tt>";
+        "tooltip-format" = "<tt><small>{calendar}</small></tt>";
         calendar = {
           mode = "month";
           "mode-mon-col" = 3;
@@ -132,7 +132,7 @@ _:
       "memory" = {
         interval = 2;
         format = "󰍛 {percentage}%";
-        tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
+        "tooltip-format" = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
         "on-click" = "flatpak run io.missioncenter.MissionCenter || wezterm start --class btm -- btm";
       };
 
@@ -140,57 +140,57 @@ _:
         interval = 30;
         format = "󰋊 {percentage_used}%";
         path = "/";
-        tooltip-format = "Used: {used} / {total}";
+        "tooltip-format" = "Used: {used} / {total}";
       };
 
       "network" = {
         interval = 2;
-        format-wifi = "󰖨 {essid}";
-        format-ethernet = "󰈀 {bandwidthDownBytes}";
-        format-linked = "󰈀 {ifname}";
-        format-disconnected = "󰖪";
-        tooltip-format = "{ifname}: {ipaddr}/{cidr}\n󰕒 {bandwidthUpBytes} 󰇚 {bandwidthDownBytes}\n\nClick: copy IP | Right-click: settings";
+        "format-wifi" = "󰖨 {essid}";
+        "format-ethernet" = "󰈀 {bandwidthDownBytes}";
+        "format-linked" = "󰈀 {ifname}";
+        "format-disconnected" = "󰖪";
+        "tooltip-format" = "{ifname}: {ipaddr}/{cidr}\n󰕒 {bandwidthUpBytes} 󰇚 {bandwidthDownBytes}\n\nClick: copy IP | Right-click: settings";
         "on-click" = "bash -c 'ip addr show | grep \"inet \" | grep -v 127.0.0.1 | head -1 | awk \"{print \\$2}\" | cut -d/ -f1 | wl-copy && notify-send \"IP Copied\" \"$(wl-paste)\"'";
         "on-click-right" = "nm-connection-editor";
       };
 
-      "pulseaudio" = {
+      "wireplumber" = {
         format = "{icon} {volume}%";
-        format-muted = "󰝟";
+        "format-muted" = "󰝟";
         "format-icons" = {
           default = [ "󰕿" "󰖀" "󰕾" ];
         };
-        on-click = "pavucontrol";
-        on-click-right = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
-        on-scroll-up = "pactl set-sink-volume @DEFAULT_SINK@ +2%";
-        on-scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -2%";
-        tooltip-format = "{desc}\nVolume: {volume}%\n\nScroll: adjust volume\nRight-click: mute";
+        "on-click" = "pavucontrol";
+        "on-click-right" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "on-scroll-up" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+";
+        "on-scroll-down" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
+        "tooltip-format" = "{node_name}\nVolume: {volume}%\n\nScroll: adjust volume\nRight-click: mute";
         "max-volume" = 150;
       };
 
       "custom/notifications" = {
         tooltip = false;
         format = "{icon}";
-        format-icons = {
+        "format-icons" = {
           notification = "󱅫";
           none = "󰂚";
-          dnd-notification = "󰂛";
-          dnd-none = "󰂛";
-          inhibited-notification = "󰂠";
-          inhibited-none = "󰂠";
-          dnd-inhibited-notification = "󰂠";
-          dnd-inhibited-none = "󰂠";
+          "dnd-notification" = "󰂛";
+          "dnd-none" = "󰂛";
+          "inhibited-notification" = "󰂠";
+          "inhibited-none" = "󰂠";
+          "dnd-inhibited-notification" = "󰂠";
+          "dnd-inhibited-none" = "󰂠";
         };
-        return-type = "json";
-        exec-if = "which swaync-client";
+        "return-type" = "json";
+        "exec-if" = "which swaync-client";
         exec = "swaync-client -swb";
-        on-click = "swaync-client -t -sw";
-        on-click-right = "swaync-client -d -sw";
+        "on-click" = "swaync-client -t -sw";
+        "on-click-right" = "swaync-client -d -sw";
         escape = true;
       };
 
       "tray" = {
-        icon-size = 16;
+        "icon-size" = 16;
         spacing = 8;
       };
     };

@@ -10,6 +10,7 @@
     };
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
   };
 
   # Disable legacy PulseAudio service in favor of PipeWire

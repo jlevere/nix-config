@@ -109,7 +109,7 @@
     #memory,
     #disk,
     #network,
-    #pulseaudio,
+    #wireplumber,
     #custom-notifications {
       padding: 0 10px;
       margin: 0 1px;
@@ -143,11 +143,11 @@
       color: @overlay0;
     }
 
-    #pulseaudio {
+    #wireplumber {
       color: @mauve;
     }
 
-    #pulseaudio.muted {
+    #wireplumber.muted {
       color: @overlay0;
     }
 

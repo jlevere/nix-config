@@ -16,6 +16,7 @@
       hypridle
       hyprpaper
       pavucontrol
+      networkmanagerapplet
       rofi
       playerctl
       helvum
