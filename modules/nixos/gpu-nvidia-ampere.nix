@@ -41,7 +41,7 @@
     GBM_BACKEND = "nvidia-drm";
     WLR_NO_HARDWARE_CURSORS = "1";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_RENDERER = "vulkan";
+    WLR_RENDERER = "opengl";
   };
 
   # Often helps Wayland session stability on NVIDIA

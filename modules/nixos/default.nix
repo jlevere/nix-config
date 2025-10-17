@@ -26,6 +26,7 @@
     ./openssh.nix
     ./pipewire.nix
     ./polkit.nix
+    ./pam.nix
     ./qt-wayland.nix
     ./tailscale.nix
     ./upower.nix

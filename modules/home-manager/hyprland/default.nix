@@ -6,6 +6,8 @@
     ./waybar
     ./theme
     ./screenshot.nix
+    ./hypridle.nix
+    ./hyprlock.nix
   ];
 
   config = {
@@ -17,12 +19,14 @@
       rofi
       playerctl
       helvum
+      bottom
     ];
 
     wayland.windowManager.hyprland = {
       enable = true;
       package = null;
       portalPackage = null;
+      systemd.enable = true;
       systemd.variables = [ "--all" ];
 
       plugins = [ ];
@@ -61,6 +65,9 @@
         env = [
           "NIXOS_OZONE_WL,1"
           "MOZ_ENABLE_WAYLAND,1"
+          "GBM_BACKEND,nvidia-drm"
+          "WLR_NO_HARDWARE_CURSORS,1"
+          "WLR_RENDERER,opengl"
         ];
       };
     };

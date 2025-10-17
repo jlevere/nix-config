@@ -5,23 +5,23 @@ _:
     "top_bar" = {
       layer = "top";
       position = "top";
-      height = 36;
-      spacing = 4;
+      height = 34;
+      spacing = 0;
+      
       "modules-left" = [
         "hyprland/workspaces"
         "hyprland/window"
-        "hyprland/submap"
       ];
+      
       "modules-center" = [
-        "clock#time"
-        "custom/separator"
-        "clock#week"
-        "custom/separator_dot"
-        "clock#month"
-        "custom/separator"
-        "clock#calendar"
+        "clock"
       ];
+      
       "modules-right" = [
+        "custom/weather"
+        "cpu"
+        "memory"
+        "disk"
         "tray"
         "custom/notifications"
         "network"
@@ -29,23 +29,40 @@ _:
       ];
 
       "hyprland/workspaces" = {
-        "on-click" = "activate";
-        "on-scroll-up" = "hyprctl dispatch workspace e+1";
-        "on-scroll-down" = "hyprctl dispatch workspace e-1";
-        "on-click-right" = "hyprctl dispatch togglespecialworkspace";
         format = "{icon} {windows}";
         "format-window-separator" = " ";
+        "window-rewrite-default" = "";
         "window-rewrite" = {
-          "class<firefox>" = "";
-          "class<cursor>" = "";
-          "class<Chromium>" = "";
-          "class<Google-chrome>" = "";
-          "class<org.wezfurlong.wezterm>" = "";
-          "class<Code>" = "";
+          # Browser
+          "class<firefox>" = "󰈹";
+          "class<Firefox>" = "󰈹";
+          
+          # Development
+          "class<cursor>" = "󰨞";
+          "class<Cursor>" = "󰨞";
+          "class<ghidra>" = "󱘎";
+          
+          # Terminal
+          "class<org.wezfurlong.wezterm>" = "󰆍";
+          "class<zellij>" = "󰆍";
+          
+          # Communication
           "class<vesktop>" = "󰙯";
+          "class<Vesktop>" = "󰙯";
+          "class<signal>" = "󰭹";
+          "class<Signal>" = "󰭹";
+          
+          # Productivity
+          "class<obsidian>" = "󱓷";
+          "class<Obsidian>" = "󱓷";
+          
+          # System Tools
+          "class<pavucontrol>" = "󰕾";
+          "class<rofi>" = "󰕘";
+          "class<Rofi>" = "󰕘";
+          "class<remmina>" = "󰢹";
+          "class<org.remmina.Remmina>" = "󰢹";
         };
-        "window-rewrite-default" = "";
-        "workspace-taskbar" = { };
         "format-icons" = {
           "1" = "󰲠";
           "2" = "󰲢";
@@ -57,56 +74,98 @@ _:
           "8" = "󰲮";
           "9" = "󰲰";
           "10" = "󰿬";
-          "special" = "";
+          "special" = "";
         };
+        "on-scroll-up" = "hyprctl dispatch workspace e+1";
+        "on-scroll-down" = "hyprctl dispatch workspace e-1";
         "show-special" = true;
         "all-outputs" = true;
         "persistent-workspaces" = {
-          "*" = [
-            1
-            2
-            3
-            4
-            5
-            6
-            7
-            8
-            9
-            10
-          ];
+          "*" = [ 1 2 3 4 5 6 7 8 9 10 ];
         };
       };
 
       "hyprland/window" = {
-        format = "{title}";
-        "max-length" = 40;
+        format = "{}";
+        "max-length" = 60;
         "separate-outputs" = true;
-        "tooltip" = true;
+        rewrite = {
+          "(.*) — Mozilla Firefox" = "󰈹 $1";
+          "(.*) - Cursor" = "󰨞 $1";
+          "(.*) - WezTerm" = "󰆍 $1";
+        };
       };
 
-      "tray" = {
-        icon-size = 16;
-        spacing = 8;
+      "clock" = {
+        format = " {:%H:%M}";
+        "format-alt" = " {:%A, %B %d, %Y}";
+        tooltip-format = "<tt><small>{calendar}</small></tt>";
+        calendar = {
+          mode = "month";
+          "mode-mon-col" = 3;
+          "weeks-pos" = "right";
+          "on-scroll" = 1;
+          format = {
+            months = "<span color='#f5e0dc'><b>{}</b></span>";
+            days = "<span color='#cdd6f4'><b>{}</b></span>";
+            weeks = "<span color='#cba6f7'><b>W{}</b></span>";
+            weekdays = "<span color='#a6e3a1'><b>{}</b></span>";
+            today = "<span color='#f38ba8'><b><u>{}</u></b></span>";
+          };
+        };
+      };
+
+      "custom/weather" = {
+        format = "{}";
+        interval = 600;
+        exec = "~/.config/waybar/weather.sh";
+        "return-type" = "json";
+        "on-click" = "firefox 'https://wttr.in'";
+      };
+
+      "cpu" = {
+        interval = 2;
+        format = "󰻠 {usage}%";
+        "on-click" = "flatpak run io.missioncenter.MissionCenter || wezterm start --class btm -- btm";
+      };
+
+      "memory" = {
+        interval = 2;
+        format = "󰍛 {percentage}%";
+        tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G";
+        "on-click" = "flatpak run io.missioncenter.MissionCenter || wezterm start --class btm -- btm";
+      };
+
+      "disk" = {
+        interval = 30;
+        format = "󰋊 {percentage_used}%";
+        path = "/";
+        tooltip-format = "Used: {used} / {total}";
       };
 
       "network" = {
-        format = "{ifname}";
-        format-wifi = "  {essid}";
-        format-ethernet = " {ifname}";
-        format-disconnected = "󰌙";
-        tooltip = true;
+        interval = 2;
+        format-wifi = "󰖨 {essid}";
+        format-ethernet = "󰈀 {bandwidthDownBytes}";
+        format-linked = "󰈀 {ifname}";
+        format-disconnected = "󰖪";
+        tooltip-format = "{ifname}: {ipaddr}/{cidr}\n󰕒 {bandwidthUpBytes} 󰇚 {bandwidthDownBytes}\n\nClick: copy IP | Right-click: settings";
+        "on-click" = "bash -c 'ip addr show | grep \"inet \" | grep -v 127.0.0.1 | head -1 | awk \"{print \\$2}\" | cut -d/ -f1 | wl-copy && notify-send \"IP Copied\" \"$(wl-paste)\"'";
+        "on-click-right" = "nm-connection-editor";
       };
 
       "pulseaudio" = {
-        format = "{icon}";
-        format-muted = "";
-        "format-icons" = [
-          ""
-          ""
-          ""
-        ];
+        format = "{icon} {volume}%";
+        format-muted = "󰝟";
+        "format-icons" = {
+          default = [ "󰕿" "󰖀" "󰕾" ];
+        };
         on-click = "pavucontrol";
-        tooltip = true;
+        on-click-right = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        on-scroll-up = "pactl set-sink-volume @DEFAULT_SINK@ +2%";
+        on-scroll-down = "pactl set-sink-volume @DEFAULT_SINK@ -2%";
+        tooltip-format = "{desc}\nVolume: {volume}%\n\nScroll: adjust volume\nRight-click: mute";
+        "max-volume" = 150;
       };
 
       "custom/notifications" = {
@@ -114,7 +173,7 @@ _:
         format = "{icon}";
         format-icons = {
           notification = "󱅫";
-          none = "󰍥";
+          none = "󰂚";
           dnd-notification = "󰂛";
           dnd-none = "󰂛";
           inhibited-notification = "󰂠";
@@ -130,81 +189,9 @@ _:
         escape = true;
       };
 
-      "hyprland/language" = {
-        format = "  {short}";
-        tooltip = false;
-      };
-
-      "hyprland/submap" = {
-        format = "<span color='#a6e3a1'>Mode:</span> {}";
-        tooltip = false;
-      };
-
-      "clock#time" = {
-        format = "{:%H:%M}";
-      };
-
-      "custom/separator" = {
-        format = "|";
-        tooltip = false;
-      };
-
-      "custom/separator_dot" = {
-        format = "•";
-        tooltip = false;
-      };
-
-      "clock#week" = {
-        format = "{:%a}";
-      };
-
-      "clock#month" = {
-        format = "{:%h}";
-      };
-
-      "clock#calendar" = {
-        format = "{:%F}";
-        "tooltip-format" = "<tt><small>{calendar}</small></tt>";
-        actions = {
-          "on-click-right" = "mode";
-        };
-        calendar = {
-          mode = "month";
-          "mode-mon-col" = 3;
-          "weeks-pos" = "right";
-          "on-scroll" = 1;
-          "on-click-right" = "mode";
-          format = {
-            months = "<span color='#f5e0dc'><b>{}</b></span>";
-            days = "<span color='#cdd6f4'><b>{}</b></span>";
-            weeks = "<span color='#cba6f7'><b>W{}</b></span>";
-            weekdays = "<span color='#a6e3a1'><b>{}</b></span>";
-            today = "<span color='#94e2d5'><b><u>{}</u></b></span>";
-          };
-        };
-      };
-
-      "clock" = {
-        format = "{:%H:%M | %a • %h | %F}";
-        "format-alt" = "{:%I:%M %p}";
-        "tooltip-format" = "<tt><small>{calendar}</small></tt>";
-        actions = {
-          "on-click-right" = "mode";
-        };
-        calendar = {
-          mode = "month";
-          "mode-mon-col" = 3;
-          "weeks-pos" = "right";
-          "on-scroll" = 1;
-          "on-click-right" = "mode";
-          format = {
-            months = "<span color='#f5e0dc'><b>{}</b></span>";
-            days = "<span color='#cdd6f4'><b>{}</b></span>";
-            weeks = "<span color='#cba6f7'><b>W{}</b></span>";
-            weekdays = "<span color='#a6e3a1'><b>{}</b></span>";
-            today = "<span color='#94e2d5'><b><u>{}</u></b></span>";
-          };
-        };
+      "tray" = {
+        icon-size = 16;
+        spacing = 8;
       };
     };
   };

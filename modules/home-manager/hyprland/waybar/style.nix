@@ -2,122 +2,184 @@
 
 {
   programs.waybar.style = ''
-    @define-color base #1e1e2e;
+    /* Catppuccin Mocha - Minimal Technical Theme */
+    @define-color base   #1e1e2e;
+    @define-color surface0 #313244;
     @define-color surface1 #45475a;
-    @define-color text #cdd6f4;
-    @define-color yellow #f9e2af;
+    @define-color surface2 #585b70;
+    
+    @define-color text     #cdd6f4;
+    @define-color subtext0 #a6adc8;
     @define-color overlay0 #6c7086;
-    @define-color peach #fab387;
-    @define-color green #a6e3a1;
-    @define-color flamingo #f2cdcd;
-    @define-color sapphire #74c7ec;
-    @define-color mauve #cba6f7;
+    
+    @define-color blue      #89b4fa;
+    @define-color sapphire  #74c7ec;
+    @define-color sky       #89dceb;
+    @define-color teal      #94e2d5;
+    @define-color green     #a6e3a1;
+    @define-color peach     #fab387;
+    @define-color red       #f38ba8;
+    @define-color mauve     #cba6f7;
+    @define-color pink      #f5c2e7;
+
     * {
+      font-family: "CaskaydiaCove Nerd Font", monospace;
+      font-size: 14px;
+      font-weight: 500;
       border: none;
+      border-radius: 0;
+      min-height: 0;
+      padding: 0;
+      margin: 0;
     }
 
-    #waybar {
-      background-color: alpha(@base, 0.7);
-      border-bottom: solid alpha(@surface1, 0.7) 2;
+    window#waybar {
+      background-color: alpha(@base, 0.75);
+      border-bottom: 1px solid alpha(@surface2, 0.3);
+      color: @text;
     }
 
-    #user {
-      padding-left: 10;
-    }
-
-    #language {
-      padding-left: 15;
-    }
-
-    #keyboard-state label.locked {
-      color: @yellow;
-    }
-
+    /* Left modules */
     #workspaces {
-      margin-left: 10;
+      margin: 0;
+      padding: 0 6px;
     }
 
     #workspaces button {
-      color: @text;
-      font-size: 1.25rem;
+      padding: 0 7px;
+      margin: 0 1px;
+      color: @overlay0;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 16px;
+    }
+
+    #workspaces button:hover {
+      color: @subtext0;
+      background: alpha(@surface0, 0.5);
     }
 
     #workspaces button.empty {
-      color: @overlay0;
+      color: alpha(@overlay0, 0.5);
     }
 
     #workspaces button.active {
-      color: @peach;
+      color: @mauve;
+      border-bottom: 1px solid @mauve;
     }
 
     #workspaces button.special {
-      color: @mauve;
+      color: @pink;
+      border-bottom: 1px solid @pink;
     }
 
     #workspaces button.urgent {
-      color: @yellow;
-    }
-
-    #submap {
-      background-color: alpha(@surface1, 0.7);
-      border-radius: 15;
-      padding-left: 15;
-      padding-right: 15;
-      margin-left: 20;
-      margin-right: 20;
-      margin-top: 5;
-      margin-bottom: 5;
-    }
-
-    window.top_bar .modules-center {
-      font-weight: bold;
-      background-color: alpha(@surface1, 0.7);
-      color: @peach;
-      border-radius: 15;
-      padding-left: 20;
-      padding-right: 20;
-      margin-top: 5;
-      margin-bottom: 5;
+      color: @red;
+      border-bottom: 1px solid @red;
     }
 
     #window {
-      color: @text;
-      padding-left: 10;
-      padding-right: 10;
+      margin: 0 12px;
+      padding: 0 8px;
+      color: @subtext0;
+      font-weight: 400;
+      border-left: 1px solid alpha(@surface2, 0.2);
     }
 
     #window.empty {
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Center */
+    #clock {
+      padding: 0 20px;
+      color: @text;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-left: 1px solid alpha(@surface2, 0.2);
+      border-right: 1px solid alpha(@surface2, 0.2);
+    }
+
+    /* Right modules */
+    #custom-weather,
+    #cpu,
+    #memory,
+    #disk,
+    #network,
+    #pulseaudio,
+    #custom-notifications {
+      padding: 0 10px;
+      margin: 0 1px;
+    }
+
+    #custom-weather {
+      color: @sky;
+      border-right: 1px solid alpha(@surface2, 0.2);
+    }
+
+    #cpu {
+      color: @blue;
+    }
+
+    #memory {
+      color: @sapphire;
+    }
+
+    #disk {
+      color: @teal;
+      padding-right: 12px;
+      border-right: 1px solid alpha(@surface2, 0.2);
+    }
+
+    #network {
+      color: @green;
+      padding-left: 12px;
+    }
+
+    #network.disconnected {
       color: @overlay0;
     }
 
-    #custom-separator {
-      color: @green;
-    }
-
-    #custom-separator_dot {
-      color: @green;
-    }
-
-    #clock.time {
-      color: @flamingo;
-    }
-
-    #clock.week {
-      color: @sapphire;
-    }
-
-    #clock.month {
-      color: @sapphire;
-    }
-
-    #clock.calendar {
+    #pulseaudio {
       color: @mauve;
     }
 
-    #language {
-      color: @sapphire;
-      padding-left: 10;
-      padding-right: 10;
+    #pulseaudio.muted {
+      color: @overlay0;
+    }
+
+    #custom-notifications {
+      color: @peach;
+      padding-right: 12px;
+      border-right: 1px solid alpha(@surface2, 0.2);
+    }
+
+    #tray {
+      padding: 0 10px;
+    }
+
+    #tray > .passive {
+      -gtk-icon-effect: dim;
+    }
+
+    #tray > .needs-attention {
+      -gtk-icon-effect: highlight;
+    }
+
+    /* Tooltips */
+    tooltip {
+      background: alpha(@base, 0.95);
+      border: 1px solid alpha(@surface2, 0.5);
+      border-radius: 4px;
+      padding: 8px 12px;
+    }
+
+    tooltip label {
+      color: @text;
+      font-size: 11px;
     }
   '';
 }
