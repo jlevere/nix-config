@@ -12,9 +12,27 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "breeze";
+      theme = "catppuccin-mocha";
+      package = pkgs.kdePackages.sddm;
+      settings = {
+        Theme = {
+          CursorTheme = "Bibata-Modern-Ice";
+        };
+      };
     };
   };
 
   services.xserver.enable = true;
+
+  # Install Catppuccin SDDM theme
+  environment.systemPackages = with pkgs; [
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Noto Sans";
+      fontSize = "9";
+      background = "${../../assets/wallpapers/die.jpg}";
+      loginBackground = true;
+    })
+    bibata-cursors
+  ];
 }

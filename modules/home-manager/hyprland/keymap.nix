@@ -93,7 +93,7 @@
               ", XF86AudioPlay, exec, playerctl play-pause"
 
               # Lock screen
-              "$mainMod CTRL, ESC, exec, hyprlock"
+              "$mainMod, ESCAPE, exec, hyprlock"
 
               # Notification center
               "$mainMod, N, exec, swaync-client -t -sw"
