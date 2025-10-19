@@ -41,7 +41,12 @@
     GBM_BACKEND = "nvidia-drm";
     WLR_NO_HARDWARE_CURSORS = "1";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_RENDERER = "opengl";
+    WLR_RENDERER = "vulkan";
+    LIBVA_DRIVER_NAME = "nvidia";
+    # Force EGL platform to be Wayland for better compatibility
+    EGL_PLATFORM = "wayland";
+    # Helps with screencopy on NVIDIA
+    WLR_DRM_NO_ATOMIC = "1";
   };
 
   # Often helps Wayland session stability on NVIDIA

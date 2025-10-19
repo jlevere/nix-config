@@ -10,12 +10,12 @@
   xdg.configFile."hypr/hyprlock.conf".text = ''
     general {
       hide_cursor = true
-      grace = 0
     }
 
-    # Background - blur screenshot
+    # Background - blurred screenshot with fallback color
     background {
       monitor =
+      color = rgb(30, 30, 46)
       path = screenshot
       blur_passes = 3
       blur_size = 7

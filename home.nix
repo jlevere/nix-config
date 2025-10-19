@@ -18,6 +18,7 @@
     nix-registry.enable = true;
     man.enable = true;
     keyboard.enable = true;
+    xdg.enable = true;
 
     hyprland.enable = true;
     vesktop.enable = true;

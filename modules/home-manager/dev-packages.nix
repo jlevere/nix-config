@@ -23,6 +23,7 @@
       gdb
       ghidra
       gnumake
+      google-chrome
       jq
       just
       ltrace

@@ -26,5 +26,11 @@
     COMPOSE_DOCKER_CLI_BUILD = "1";
   };
 
-  systemd.services.docker.wantedBy = [ "multi-user.target" ];
+  systemd.services.docker = {
+    wantedBy = [ "multi-user.target" ];
+    # Give Docker more time to gracefully shutdown containers
+    serviceConfig = {
+      TimeoutStopSec = 120;
+    };
+  };
 }

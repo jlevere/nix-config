@@ -12,6 +12,8 @@
       systemd.enable = true;
     };
     consoleLogLevel = 3;
+    # Disable sp5100_tco watchdog that causes shutdown warnings on AMD
+    blacklistedKernelModules = [ "sp5100_tco" ];
     plymouth = {
       enable = true;
       themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];

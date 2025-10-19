@@ -166,6 +166,7 @@ _:
         "on-scroll-down" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
         "tooltip-format" = "{node_name}\nVolume: {volume}%\n\nScroll: adjust volume\nRight-click: mute";
         "max-volume" = 150;
+        "scroll-step" = 2.0;
       };
 
       "custom/notifications" = {

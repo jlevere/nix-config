@@ -14,4 +14,7 @@
   };
 
   programs.virt-manager.enable = true;
+
+  # Disable auto-resume of VMs on boot (prevents errors on missing VMs)
+  systemd.services.libvirt-guests.enable = false;
 }
