@@ -13,10 +13,15 @@ let
         specialArgs = {
           inherit inputs outputs myUtils;
         };
-        modules = [
-          config
-          outputs.nixosModules.default
-        ];
+          modules = [
+            {
+              nixpkgs.overlays = [
+                inputs.cursor.overlays.default
+              ];
+            }
+            config
+            outputs.nixosModules.default
+          ];
       };
 
     mkHome =

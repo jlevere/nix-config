@@ -14,6 +14,9 @@
     ./modules/nixos
   ];
 
+  # Allow unfree packages (needed for cursor and other proprietary software)
+  nixpkgs.config.allowUnfree = true;
+
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
 

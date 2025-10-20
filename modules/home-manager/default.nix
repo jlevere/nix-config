@@ -38,7 +38,6 @@ in
     slurp
     swappy
     firefox
-    code-cursor
     nixfmt-rfc-style
     nil
   ];

@@ -15,7 +15,7 @@
       act
       alejandra
       awscli2
-      code-cursor
+      cursor  # From overlay - tracks latest releases
       bat
       binutils
       dig
