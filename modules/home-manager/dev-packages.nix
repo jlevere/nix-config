@@ -30,6 +30,7 @@
       nil
       netcat
       obsidian
+      openvpn
       pythonWithPackages
       remmina
       ripgrep
