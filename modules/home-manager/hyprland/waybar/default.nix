@@ -13,4 +13,10 @@
     source = ./weather.sh;
     executable = true;
   };
+
+  # Install Tailscale status script
+  home.file.".config/waybar/tailscale-status.sh" = {
+    source = ./tailscale-status.sh;
+    executable = true;
+  };
 }

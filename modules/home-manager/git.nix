@@ -19,7 +19,7 @@ in
       email = lib.mkOption {
         type = types.nullOr types.str;
         default = null;
-        description = "Email label to use in allowed_signers entries (defaults to programs.git.userEmail if unset).";
+        description = "Email label to use in allowed_signers entries (defaults to programs.git.settings.user.email if unset).";
       };
       filePath = lib.mkOption {
         type = types.str;
@@ -46,7 +46,7 @@ in
         ".direnv"
         ".envrc"
       ];
-      extraConfig = {
+      settings = {
         commit.gpgsign = true;
         gpg.format = "ssh";
         gpg.ssh.allowedSignersFile = cfg.allowedSigners.filePath;
@@ -86,7 +86,7 @@ in
             if cfg.allowedSigners.email != null then
               cfg.allowedSigners.email
             else
-              (config.programs.git.userEmail or "git@localhost");
+              (config.programs.git.settings.user.email or "git@localhost");
         in
         (lib.concatMapStringsSep "\n" (k: "${label} ${k}") lines) + "\n";
     };

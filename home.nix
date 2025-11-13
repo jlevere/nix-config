@@ -6,8 +6,10 @@
 
 {
   programs.git = {
-    userName = "jLevere";
-    userEmail = "71566629+jLevere@users.noreply.github.com";
+    settings = {
+      user.name = "jLevere";
+      user.email = "71566629+jLevere@users.noreply.github.com";
+    };
   };
 
   myUser = {
@@ -22,7 +24,6 @@
 
     hyprland.enable = true;
     vesktop.enable = true;
-    typst.enable = true;
     notifications.enable = true;
     polkit-agent.enable = true;
     wezterm.enable = true;

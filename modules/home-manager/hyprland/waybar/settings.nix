@@ -25,6 +25,7 @@ _:
         "tray"
         "custom/notifications"
         "network"
+        "custom/tailscale"
         "wireplumber"
       ];
 
@@ -152,6 +153,16 @@ _:
         "tooltip-format" = "{ifname}: {ipaddr}/{cidr}\n󰕒 {bandwidthUpBytes} 󰇚 {bandwidthDownBytes}\n\nClick: copy IP | Right-click: settings";
         "on-click" = "bash -c 'ip addr show | grep \"inet \" | grep -v 127.0.0.1 | head -1 | awk \"{print \\$2}\" | cut -d/ -f1 | wl-copy && notify-send \"IP Copied\" \"$(wl-paste)\"'";
         "on-click-right" = "nm-connection-editor";
+      };
+
+      "custom/tailscale" = {
+        format = "{}";
+        interval = 10;
+        exec = "~/.config/waybar/tailscale-status.sh";
+        "return-type" = "json";
+        "tooltip-format" = "{}";
+        "on-click" = "bash -c 'tailscale status --json | jq -r \".Self.TailscaleIPs[0]\" | wl-copy && notify-send \"Tailscale\" \"IP Copied: $(wl-paste)\"'";
+        "on-click-right" = "wezterm start -- bash -c 'tailscale status && read -p \"Press enter to close...\"'";
       };
 
       "wireplumber" = {

@@ -15,7 +15,6 @@
     ./dev-nettools.nix
     ./docker.nix
     ./libvirt.nix
-    ./azure-vpn-client.nix
     ./firmware.nix
     ./fish.nix
     ./fonts.nix

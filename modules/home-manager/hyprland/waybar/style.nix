@@ -109,6 +109,7 @@
     #memory,
     #disk,
     #network,
+    #custom-tailscale,
     #wireplumber,
     #custom-notifications {
       padding: 0 10px;
@@ -140,6 +141,14 @@
     }
 
     #network.disconnected {
+      color: @overlay0;
+    }
+
+    #custom-tailscale.connected {
+      color: @green;
+    }
+
+    #custom-tailscale.disconnected {
       color: @overlay0;
     }
 
