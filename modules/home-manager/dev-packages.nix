@@ -31,6 +31,7 @@
       netcat
       obsidian
       openvpn
+      prismlauncher
       pythonWithPackages
       remmina
       ripgrep

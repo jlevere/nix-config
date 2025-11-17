@@ -57,11 +57,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1762997349,
-        "narHash": "sha256-PyWOr2RTnBl0UintQEK5wWGRs396TNmZJMTMDP0W8vw=",
+        "lastModified": 1763101869,
+        "narHash": "sha256-wOrxLN4HwFMqGqVi4pXvhVXSOMFm/IWTBB4BxtscIS4=",
         "owner": "jlevere",
         "repo": "cursor",
-        "rev": "c47afa6a86020523b485bfc109b826b5b8853055",
+        "rev": "5fc2c720e06b8b56710e6149d7d81dca6d07f234",
         "type": "github"
       },
       "original": {
