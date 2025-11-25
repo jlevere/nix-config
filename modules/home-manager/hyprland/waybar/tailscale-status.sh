@@ -37,8 +37,8 @@ DEVICE_COUNT=${DEVICE_COUNT:-0}
 SELF_IP=$(echo "$STATUS" | jq -r '.Self.TailscaleIPs[0] // "N/A"' 2>/dev/null)
 SELF_IP=${SELF_IP:-N/A}
 
-# Output JSON with tooltip
-printf '{"text": "󰈀", "tooltip": "Tailscale Connected\nIP: %s\n\nOnline devices: %s", "class": "connected"}' \
+# Output JSON with tooltip (escape newlines for valid JSON)
+printf '{"text": "󰈀", "tooltip": "Tailscale Connected\\nIP: %s\\n\\nOnline devices: %s", "class": "connected"}' \
     "$SELF_IP" \
     "$DEVICE_COUNT"
 
