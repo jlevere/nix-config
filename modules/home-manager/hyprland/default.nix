@@ -81,6 +81,7 @@
         ExecCondition = ''${pkgs.bash}/bin/bash -lc 'test -n "$HYPRLAND_INSTANCE_SIGNATURE"' '';
         ExecStart = "${pkgs.waybar}/bin/waybar";
         Restart = "on-failure";
+        RestartSec = 2;
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];

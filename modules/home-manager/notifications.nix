@@ -15,4 +15,11 @@
       timeout-critical = 0;
     };
   };
+
+  # Override the systemd service to add restart delay
+  systemd.user.services.swaync = {
+    Service = {
+      RestartSec = 2;
+    };
+  };
 }
