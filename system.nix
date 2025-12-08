@@ -86,6 +86,9 @@
     microsoft-azurevpnclient.enable = true;
   };
 
+  # Silence systemd warning about legacy /var/run/cups socket path
+  systemd.sockets.cups.listenStreams = [ "/run/cups/cups.sock" ];
+
   environment.systemPackages = with pkgs; [
     home-manager
   ];

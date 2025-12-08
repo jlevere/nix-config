@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.myUser.git;
   types = lib.types;
@@ -55,6 +55,16 @@ in
     };
 
     services.ssh-agent.enable = true;
+
+    systemd.user.services.ssh-agent.Service = {
+      Environment = [
+        "XDG_RUNTIME_DIR=%t"
+        "SSH_AUTH_SOCK=%t/ssh-agent"
+      ];
+      ExecStart = "${pkgs.openssh}/bin/ssh-agent -D -a %t/ssh-agent";
+    };
+
+    home.sessionVariables.SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
 
     programs.ssh = {
       enable = true;

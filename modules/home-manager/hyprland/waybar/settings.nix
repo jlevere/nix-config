@@ -26,7 +26,7 @@ _:
         "custom/notifications"
         "network"
         "custom/tailscale"
-        "wireplumber"
+        "pulseaudio"
       ];
 
       "hyprland/workspaces" = {
@@ -165,17 +165,17 @@ _:
         "on-click-right" = "wezterm start -- bash -c 'tailscale status && read -p \"Press enter to close...\"'";
       };
 
-      "wireplumber" = {
+      "pulseaudio" = {
         format = "{icon} {volume}%";
         "format-muted" = "󰝟";
         "format-icons" = {
           default = [ "󰕿" "󰖀" "󰕾" ];
         };
         "on-click" = "pavucontrol";
-        "on-click-right" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        "on-scroll-up" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+";
-        "on-scroll-down" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
-        "tooltip-format" = "{node_name}\nVolume: {volume}%\n\nScroll: adjust volume\nRight-click: mute";
+        "on-click-right" = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "on-scroll-up" = "pactl set-sink-volume @DEFAULT_SINK@ +2%";
+        "on-scroll-down" = "pactl set-sink-volume @DEFAULT_SINK@ -2%";
+        "tooltip-format" = "{desc}\nVolume: {volume}%\n\nScroll: adjust volume\nRight-click: mute";
         "max-volume" = 150;
         "scroll-step" = 2.0;
       };

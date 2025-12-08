@@ -3,11 +3,13 @@
 {
   virtualisation.docker = {
     enable = true;
-    liveRestore = true;
+    # Allow daemon stop to tear down containers cleanly during shutdown
+    liveRestore = false;
     # enableNvidia = true;
 
     daemon.settings = {
       log-driver = "journald";
+      "exec-opts" = [ "native.cgroupdriver=systemd" ];
       runtimes = {
         runsc = {
           path = "${pkgs.gvisor}/bin/runsc";
@@ -30,7 +32,8 @@
     wantedBy = [ "multi-user.target" ];
     # Give Docker more time to gracefully shutdown containers
     serviceConfig = {
-      TimeoutStopSec = 120;
+      TimeoutStopSec = 90;
+      KillMode = "mixed";
     };
   };
 }
