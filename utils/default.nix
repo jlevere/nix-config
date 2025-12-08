@@ -17,8 +17,10 @@ let
             {
               nixpkgs.overlays = [
                 inputs.cursor.overlays.default
+                inputs.azurevpn.overlays.default
               ];
             }
+            inputs.azurevpn.nixosModules.default
             config
             outputs.nixosModules.default
           ];

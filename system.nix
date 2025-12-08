@@ -81,6 +81,9 @@
     libinput.enable = true;
     printing.enable = true;
     openssh.enable = false;
+
+    # Microsoft Azure VPN Client
+    microsoft-azurevpnclient.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

@@ -26,6 +26,7 @@
     vesktop.enable = true;
     notifications.enable = true;
     polkit-agent.enable = true;
+    gnome-keyring.enable = true;
     wezterm.enable = true;
     dev-packages.enable = true;
     zellij.enable = true;

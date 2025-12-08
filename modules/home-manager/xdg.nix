@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.xdg-utils ];
+  home.packages = [
+    pkgs.xdg-utils
+    pkgs.nautilus # GUI file browser
+  ];
 
   xdg.mimeApps = {
     enable = true;
@@ -18,6 +21,8 @@
       "application/xhtml+xml" = [ "firefox.desktop" ];
       "application/x-extension-xhtml" = [ "firefox.desktop" ];
       "application/x-extension-xht" = [ "firefox.desktop" ];
+      # File manager
+      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
     };
   };
 }

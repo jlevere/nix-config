@@ -12,11 +12,11 @@
       hide_cursor = true
     }
 
-    # Background - blurred screenshot with fallback color
+    # Background - static wallpaper with blur (no screencopy)
     background {
       monitor =
       color = rgb(30, 30, 46)
-      path = screenshot
+      path = $HOME/.background
       blur_passes = 3
       blur_size = 7
     }

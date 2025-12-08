@@ -19,6 +19,8 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
+    # Microsoft Azure VPN Client (local development)
+    azurevpn.url = "path:/home/admin/projects/microsoft-azurevpnclient-overlay";
   };
 
   outputs =

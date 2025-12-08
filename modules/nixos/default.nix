@@ -17,6 +17,7 @@
     ./libvirt.nix
     ./firmware.nix
     ./fish.nix
+    ./gnome-keyring.nix
     ./fonts.nix
     ./gpu-nvidia-ampere.nix
     ./hyprland.nix
