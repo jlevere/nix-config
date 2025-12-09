@@ -70,24 +70,6 @@
       };
     };
 
-    # Autostart Waybar under Hyprland session
-    systemd.user.services.waybar = {
-      Unit = {
-        Description = "Waybar";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
-      Service = {
-        ExecCondition = ''${pkgs.bash}/bin/bash -lc 'test -n "$HYPRLAND_INSTANCE_SIGNATURE"' '';
-        ExecStart = "${pkgs.waybar}/bin/waybar";
-        Restart = "on-failure";
-        RestartSec = 2;
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
-
     systemd.user.services.hyprpaper = {
       Unit = {
         Description = "Hyprpaper Wallpaper Daemon";

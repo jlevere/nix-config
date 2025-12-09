@@ -6,7 +6,14 @@
     ./style.nix
   ];
 
-  programs.waybar.enable = true;
+  programs.waybar = {
+    enable = true;
+    systemd = {
+      enable = true;
+      # Tie Waybar to the Hyprland session target so it starts once per session.
+      target = "hyprland-session.target";
+    };
+  };
 
   # Install weather script
   home.file.".config/waybar/weather.sh" = {

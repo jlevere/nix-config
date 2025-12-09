@@ -84,6 +84,9 @@
 
     # Microsoft Azure VPN Client
     microsoft-azurevpnclient.enable = true;
+
+    # Mullvad VPN (daemon + GUI)
+    mullvad-vpn.enable = true;
   };
 
   # Silence systemd warning about legacy /var/run/cups socket path
