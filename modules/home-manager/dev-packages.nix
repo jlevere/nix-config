@@ -16,6 +16,7 @@
       alejandra
       awscli2
       cursor  # From overlay - tracks latest releases
+      docker-buildx
       bat
       binutils
       dig
