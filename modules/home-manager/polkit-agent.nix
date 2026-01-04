@@ -19,6 +19,10 @@
       Environment = [
         "QT_QPA_PLATFORM=wayland"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION=1"
+        # Set desktop environment for proper portal registration
+        "XDG_CURRENT_DESKTOP=Hyprland"
+        # Suppress portal registration warnings - agent works without it
+        "QT_LOGGING_RULES=*.debug=false;qt.qpa.*.warning=false"
       ];
     };
     Install = {

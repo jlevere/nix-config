@@ -42,6 +42,11 @@
           variant = "mocha";
         };
       };
+
+      gtk4.extraConfig = {
+        # Fallback to Adwaita-dark for GTK-4 since Catppuccin doesn't support it yet
+        gtk-application-prefer-dark-theme = 1;
+      };
     };
 
     # Ensure pointer cursor theme is set for Wayland and X11 apps
@@ -61,6 +66,12 @@
         source = ./rofi/catppuccin-mocha.rasi;
       };
       "rofi/config.rasi" = lib.mkIf (pkgs ? rofi) { source = ./rofi/config.rasi; };
+      
+      # Create a minimal GTK-4.0 CSS to prevent import errors
+      "gtk-4.0/gtk.css".text = ''
+        /* Fallback GTK-4.0 theme - Catppuccin doesn't support GTK-4 yet */
+        @import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+      '';
     };
   };
 }

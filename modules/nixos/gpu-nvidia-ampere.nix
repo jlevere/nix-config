@@ -33,6 +33,14 @@
     };
   };
 
+  # Suppress harmless udev errors about device node creation
+  # The nodes are created by the kernel/systemd before udev rules run
+  services.udev.extraRules = ''
+    # Skip nvidia device node creation if they already exist
+    KERNEL=="nvidia*", TEST=="/dev/$name", GOTO="nvidia_end"
+    LABEL="nvidia_end"
+  '';
+
   # Ensure nouveau doesn't grab the device
   boot.blacklistedKernelModules = [ "nouveau" ];
 

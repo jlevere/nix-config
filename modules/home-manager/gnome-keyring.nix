@@ -7,12 +7,17 @@
     Unit = {
       Description = "GNOME Keyring (secrets component)";
       PartOf = [ "graphical-session.target" ];
+      # Start before other services that might need secrets
+      Before = [ "graphical-session.target" ];
     };
     Service = {
       Type = "simple";
       ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=secrets";
       Restart = "on-failure";
       RestartSec = 2;
+      # Ensure control directory exists
+      RuntimeDirectory = "keyring";
+      RuntimeDirectoryMode = "0700";
     };
     Install = {
       WantedBy = [ "graphical-session.target" ];

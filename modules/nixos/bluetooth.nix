@@ -15,14 +15,9 @@
       FastConnectable = true;
       # Allow devices to reconnect quickly without re-pairing
       JustWorksRepairing = "always";
-      # Increase reconnection attempts and intervals for better reliability
-      ReconnectAttempts = 7;
-      ReconnectIntervals = "1, 2, 4, 8, 16, 32, 64";
     };
     Policy = {
       AutoEnable = true;
-      # Reconnect to devices automatically when they come back
-      ReconnectOnResume = true;
     };
   };
   

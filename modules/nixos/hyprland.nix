@@ -20,7 +20,14 @@
         };
       };
     };
+    # Enable AccountsService for user avatar support
+    accounts-daemon.enable = true;
   };
+
+  # Create symlink for user avatar in AccountsService directory
+  systemd.tmpfiles.rules = [
+    "L+ /var/lib/AccountsService/icons/admin - - - - ${../../assets/avatar.png}"
+  ];
 
   services.xserver.enable = true;
 
