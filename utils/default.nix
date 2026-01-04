@@ -18,6 +18,7 @@ let
               nixpkgs.overlays = [
                 inputs.cursor.overlays.default
                 inputs.azurevpn.overlays.default
+                (import ../vesktop-overlay.nix)
               ];
             }
             inputs.azurevpn.nixosModules.default
