@@ -12,12 +12,18 @@
     };
     Service = {
       Type = "simple";
+      # Create control directory before starting
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %t/keyring";
       ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=secrets";
       Restart = "on-failure";
       RestartSec = 2;
       # Ensure control directory exists
       RuntimeDirectory = "keyring";
       RuntimeDirectoryMode = "0700";
+      # Environment variables for keyring
+      Environment = [
+        "GNOME_KEYRING_CONTROL=%t/keyring"
+      ];
     };
     Install = {
       WantedBy = [ "graphical-session.target" ];
@@ -29,6 +35,9 @@
   home.sessionVariables = {
     # Point to the standard keyring socket location
     GNOME_KEYRING_CONTROL = "$XDG_RUNTIME_DIR/keyring";
+    # Ensure secret service is available to applications
+    # This helps MCP OAuth flows work properly
+    DBUS_SESSION_BUS_ADDRESS = "unix:path=$XDG_RUNTIME_DIR/bus";
   };
 }
 
