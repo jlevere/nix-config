@@ -75,6 +75,12 @@
   networking.hostName = "p620";
   networking.networkmanager.enable = true;
 
+  # Firewall: trust Docker bridge interfaces so containers can reach host services
+  networking.firewall.trustedInterfaces = [
+    "docker0"
+    "br-+"
+  ];
+
   time.timeZone = "America/Chicago";
 
   services = {
