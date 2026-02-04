@@ -67,6 +67,12 @@
       "libvirtd"
       "kvm"
     ];
+    openssh.authorizedKeys.keyFiles = [
+      (pkgs.fetchurl {
+        url = "https://github.com/jlevere.keys";
+        hash = "sha256-9x37FxIFh3rEEL1D2mUnl/tHAuyzVUCLR9b/qFSvB70=";
+      })
+    ];
   };
 
   users.groups.docker.members = [ "admin" ];
@@ -86,7 +92,7 @@
   services = {
     libinput.enable = true;
     printing.enable = true;
-    openssh.enable = false;
+    openssh.enable = true;
 
     # Microsoft Azure VPN Client
     microsoft-azurevpnclient.enable = true;
